@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import img1 from '../images/img2.png';
 import img3 from '../images/worldmap.jpg'; 
 
-const grid = {
-    display: 'flex', 
-    flexDirection: 'column'
-}; 
+// const grid = {
+//     display: 'flex', 
+//     flexDirection: 'column'
+// }; 
 
 class Home extends React.Component {
     render() {
