@@ -278,39 +278,3 @@ ul li.nav-link:hover {
   display: block;
 }
 
-.signin-box {
-  display: inline-block;
-  padding: 20px;
-  background-color: white;
-  width: 50%;
-  position: absolute;
-  top: 30%;
-  left: 16%;
-  display: flex;
-  flex-direction: column;
-}
-
-.signin-section .signin-box img {
-  width: 200px;
-  height: 200px;
-}
-
-.signin-section .signin-box .side {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-}
-
-.signin-section .signin-box .side .left-side {
-  float: left;
-}
-
-.signin-section .signin-box .side .right-side form {
-  float: right; 
-  width: 100%;
-}
-
-form .input-username {
-  display: flex;
-  flex-direction: row;
-}
