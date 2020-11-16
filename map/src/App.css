@@ -32,6 +32,10 @@ ul li.nav-link:hover {
   left: 0;
 }
 
+.nav-link.dropdown {
+  cursor: pointer;
+}
+
 /* home */ 
 .home-item-grid img {
   width: 600px;
@@ -256,4 +260,57 @@ ul li.nav-link:hover {
 
 .info1, .info2, .info3 {
   margin: auto;
+}
+
+/* Sign in */ 
+
+/* .signin-section::before {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.25);
+  filter: brightness(80%);
+} */
+
+.signin-section {
+  width: 100%;
+  height: 916px; 
+  background-color: #08e1ae;
+  background-image: linear-gradient(315deg, #08e1ae 0%, #98de5b 74%);
+  display: block;
+}
+
+.signin-box {
+  display: inline-block;
+  padding: 20px;
+  background-color: white;
+  width: 50%;
+  position: absolute;
+  top: 30%;
+  left: 16%;
+  display: flex;
+  flex-direction: column;
+}
+
+.signin-section .signin-box img {
+  width: 200px;
+  height: 200px;
+}
+
+.signin-section .signin-box .side {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.signin-section .signin-box .side .left-side {
+  float: left;
+}
+
+.signin-section .signin-box .side .right-side form {
+  float: right; 
+  width: 100%;
+}
+
+form .input-username {
+  display: flex;
+  flex-direction: row;
 }
