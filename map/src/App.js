@@ -3,6 +3,7 @@ import './App.css';
 import Menu from './components/Menu'; 
 import Home from './components/Home'; 
 import Signin from './components/Signin'; 
+import SimpleMap from './components/Map';
 
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'; 
 
@@ -14,6 +15,7 @@ function App() {
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/signin' component={Signin} />
+          <Route path='/home' exact component={SimpleMap} />
         </Switch>
       </div>
     </Router>
