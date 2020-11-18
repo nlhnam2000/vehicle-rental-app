@@ -289,6 +289,7 @@ ul li.nav-link:hover {
   display: flex;
   align-items: center;
   z-index: 1;
+  position: relative;
 }
 
 form {
@@ -346,3 +347,18 @@ input[type="submit"] {
 	cursor: pointer;
 	transition: .5s;
 }
+
+/* @media (max-width: 1000px) {
+  .background-img {
+    display: none;
+  }
+
+  .signin-content {
+    position: absolute;
+    margin: 50px auto;
+    top: 80%;
+    right: 50%;
+    left: 50%;
+  }
+
+} */

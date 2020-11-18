@@ -46,10 +46,7 @@ class SignUp extends React.Component {
                                     <h5>Vérifier mot de pass</h5>
                                     <input type="password" className="input form-control"/>
                                 </div>
-                            </div>
-                            <Link to={"/"} style={{textDecoration: 'none', textAlign: 'right'}}>
-                                <h5 style={{fontSize: 'smaller'}}>Oublier mot de pass ?</h5>
-                            </Link>
+                            </div>  
                             <input type="submit" className="btn btn-success" value="Register" />
                         </form>
                     </div>
