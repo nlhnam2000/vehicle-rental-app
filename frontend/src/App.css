@@ -375,3 +375,66 @@ input[type="submit"] {
   display: flex;
   float: left;
 }
+/* sidebar */
+.header-sidebar{
+  width: 100%;
+}
+.option-menu{
+  display: flex;
+  height: 80px;
+  font-weight: 500;
+  color: grey;
+}
+.Info-station{
+  width: 33%;
+  float: left;
+  display: inline-flex;
+  justify-content: center;
+  padding: 5%;
+  background-color: whitesmoke;
+  height: 100%;
+  cursor: pointer;
+}
+.Find-nearestStation{
+  width: 33%;
+  float: left;
+  display: inline-flex;
+  text-align: center;
+  padding: 3%;
+  background-color: whitesmoke;
+  height: 100%;
+  cursor: pointer;
+}
+.Louer-Transport{
+  width: 34%;
+  float: left;
+  display: inline-flex;
+  justify-content: center;
+  padding: 5%;
+  background-color: whitesmoke;
+  height: 100%;
+  cursor: pointer;
+}
+.option-menu .activate{
+  color: #32be8f;
+  border-bottom: solid .2em #32be8f;
+}
+.content-sidebar .search{
+  background-color: whitesmoke;
+  height: 80px;
+}
+.content-sidebar .search-box{
+  width: 95%;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 1px 2px 0 rgba(0,0,0,.15);
+  background-color: #fff;
+  height: 2.7rem;
+  padding: 18px;
+  margin-left: 2%;
+  margin-top: 3%;
+}
+.content-sidebar .search-box:focus{
+  outline: none;
+}
+
