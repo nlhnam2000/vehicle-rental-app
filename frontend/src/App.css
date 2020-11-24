@@ -90,36 +90,7 @@ ul li.nav-link:hover {
   height: 90vh
 }
 
-@media (max-width: 636px){
-  .home-item {
-    flex-direction: column;
-  }
 
-  .home-item img{
-    margin: 0 auto;
-  }
-
-  .home-item-grid {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .home-item-grid img {
-    width: 400px;
-    height: 200px;
-  }
-  .sidebar{
-    width: 1000px;
-    display: flex;
-    flex-direction: row;
-    background-color: #08e1ae;
-  }
-  .mapID{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-  }
-}
 
 .intro {
   height: 400px;
@@ -374,66 +345,60 @@ input[type="submit"] {
 
 } */
 /* maphome */
+.mapView{
+  display: grid;
+  grid-template-columns: 30% 70%;
+  height: 100%;
+}
 .sidebar{
-  width: 30%;
-  display: flex;
-  float: left;
-  height: 90vh;
-  background-color: red;
+  display: grid;
+  grid-template-rows: 20% 80%;
 }
 .mapID{
-  width: 70%;
-  display: flex;
-  float: left;
-}
-/* sidebar */
-.header-sidebar{
   width: 100%;
 }
+/* sidebar */
 .option-menu{
-  display: flex;
-  height: 80px;
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  height: 100%;
   font-weight: 500;
   color: grey;
 }
-.Info-station{
-  width: 33%;
-  float: left;
-  display: inline-flex;
-  justify-content: center;
-  padding: 5%;
-  padding-left: 2%;
+.content-sidebar{
+  display: grid;
+  grid-template-rows: 20% 80%;
+}
+.content-sidebar .search{
   background-color: whitesmoke;
+  padding-top: 3%;
   height: 100%;
+}
+.content-Info-station, .content-nearest-station, .content-louer{
+  background-color: red;
+  height: 100%;
+}
+.Info-station{
+  text-align: center;
+  padding-top: 30%;
+  background-color: whitesmoke;
   cursor: pointer;
 }
 .Find-nearestStation{
-  width: 34%;
-  float: left;
-  display: inline-flex;
   text-align: center;
-  padding: 1%;
+  padding-top: 28%;
   background-color: whitesmoke;
-  height: 100%;
   cursor: pointer;
 }
 .Louer-Transport{
-  width: 33%;
-  float: left;
-  display: inline-flex;
-  justify-content: center;
-  padding: 5%;
+  text-align: center;
+  padding-top: 30%;
   background-color: whitesmoke;
-  height: 100%;
   cursor: pointer;
 }
 .option-menu .activate{
   color: #32be8f;
   border-bottom: solid .2em #32be8f;
-}
-.content-sidebar .search{
-  background-color: whitesmoke;
-  height: 80px;
 }
 .content-sidebar .search-box{
   width: 95%;
@@ -443,25 +408,34 @@ input[type="submit"] {
   background-color: #fff;
   height: 2.7rem;
   padding: 18px;
-  margin-left: 2%;
+  margin-left: 3%;
   margin-top: 3%;
 }
 .content-sidebar .search-box:focus{
   outline: none;
 }
-.Info-station-name-menu-sidebar, .key-name-menu-sidebar{
-  margin-top: 8px;
-}
-.search-name-menu-sidebar{
-  padding-right: 1.5em;
-}
 .Icon-Info-station, .Icon-Search, .Icon-Key{
   width: 50px;
   height: 35px;
 }
-.Icon-Search{
-  width: 50px;
-  height: 35px;
-  margin-left: 10%;
-  margin-top: 15%;
+
+@media (max-width: 636px){
+  .home-item {
+    flex-direction: column;
+  }
+
+  .home-item img{
+    margin: 0 auto;
+  }
+
+  .home-item-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-item-grid img {
+    width: 400px;
+    height: 200px;
+  }
+  
 }

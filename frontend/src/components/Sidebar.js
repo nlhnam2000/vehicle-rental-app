@@ -25,7 +25,7 @@ class Sidebar extends React.Component {
     render() {
         if (this.state.display === 'Info-station') {
             return (<>
-                <div className="header-sidebar">
+                <div className="sidebar">
                     <div className='option-menu'>
                         <div className="Info-station activate">
                             <img src={station} alt='station' className="Icon-Info-station"/>
@@ -53,7 +53,7 @@ class Sidebar extends React.Component {
         }
         if (this.state.display === 'Find-nearestStation') {
             return (<>
-                <div className="header-sidebar">
+                <div className="sidebar">
                     <div className='option-menu'>
                         <div className="Info-station" onClick={this.handleClick}>
                             <img src={station} alt='station' className="Icon-Info-station" onClick={this.handleClick}/> 
@@ -72,7 +72,7 @@ class Sidebar extends React.Component {
                         <div className="search">
                             <input className="search-box" type="text" placeholder="Votre position..." />
                         </div>
-                        <div className="content-Info-station">
+                        <div className="content-nearest-station">
                             La plus proche Station
                         </div>
                     </div>
@@ -81,7 +81,7 @@ class Sidebar extends React.Component {
         }
         if (this.state.display === 'Louer-Transport') {
             return (<>
-                <div className="header-sidebar">
+                <div className="sidebar">
                     <div className='option-menu'>
                         <div className="Info-station" onClick={this.handleClick}>
                             <img src={station} alt='station' className="Icon-Info-station" onClick={this.handleClick}/>
@@ -100,7 +100,7 @@ class Sidebar extends React.Component {
                         <div className="search">
                             <input className="search-box" type="text" placeholder="Trouver station..." />
                         </div>
-                        <div className="content-Info-station">
+                        <div className="content-louer">
                             Louer Transport
                         </div>
                     </div>

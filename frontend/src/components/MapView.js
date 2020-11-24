@@ -17,20 +17,19 @@ class MapView extends Component {
   render() {
     const { currentLocation, zoom } = this.state;
 
-    return (<>
-      <div className="sidebar">
+    return (
+      <div className="mapView">
         <Sidebar />
+        <div className="mapID">
+          <MapContainer center={currentLocation} zoom={zoom}>
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+            />
+            <Markers venues={data.venues} />
+          </MapContainer>
+        </div>
       </div>
-      <div className="mapID">
-        <MapContainer center={currentLocation} zoom={zoom}>
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-          />
-          <Markers venues={data.venues} />
-        </MapContainer>
-      </div>
-    </>
     );
   }
 }
