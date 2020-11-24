@@ -1,7 +1,8 @@
 import React from 'react'
 import '../App.css'
-
-
+import station from '../images/station.svg'
+import search from '../images/search-icon.svg'
+import key from '../images/key.svg'
 class Sidebar extends React.Component {
     constructor(props) {
         super(props)
@@ -11,13 +12,13 @@ class Sidebar extends React.Component {
         this.handleClick = this.handleClick.bind(this)
     }
     handleClick(e) {
-        if (e.target.className === "Find-nearestStation") {
+        if (e.target.className === "Find-nearestStation" || e.target.className === "search-name-menu-sidebar" || e.target.className === "Icon-Search") {
             this.setState(() => ({ display : 'Find-nearestStation' }))
         }
-        if (e.target.className === "Info-station") {
+        if (e.target.className === "Info-station" || e.target.className === "Info-station-name-menu-sidebar" || e.target.className === "Icon-Info-station" ){
             this.setState(() => ({ display : 'Info-station' }))
         }
-        if (e.target.className === "Louer-Transport") {
+        if (e.target.className === "Louer-Transport" || e.target.className === "key-name-menu-sidebar" || e.target.className === "Icon-Key") {
             this.setState(() => ({ display : 'Louer-Transport' }))
         }
     }
@@ -26,9 +27,18 @@ class Sidebar extends React.Component {
             return (<>
                 <div className="header-sidebar">
                     <div className='option-menu'>
-                        <div className="Info-station activate">Station</div>
-                        <div className="Find-nearestStation" onClick={this.handleClick}>Trouver la plus proche station</div>
-                        <div className="Louer-Transport" onClick={this.handleClick}>Louer</div>
+                        <div className="Info-station activate">
+                            <img src={station} alt='station' className="Icon-Info-station"/>
+                            <span className="Info-station-name-menu-sidebar">Station</span>
+                        </div>
+                        <div className="Find-nearestStation" onClick={this.handleClick}>
+                            <img src={search} alt='search' className="Icon-Search" onClick={this.handleClick}/>
+                            <span className="search-name-menu-sidebar" onClick={this.handleClick}>La plus proche station</span>
+                        </div>
+                        <div className="Louer-Transport" onClick={this.handleClick}>
+                            <img src={key} alt='key' className="Icon-Key" onClick={this.handleClick}/>
+                            <span className="key-name-menu-sidebar" onClick={this.handleClick}>Louer</span>
+                        </div>
                     </div>
                     <div className="content-sidebar">
                         <div className="search">
@@ -45,9 +55,18 @@ class Sidebar extends React.Component {
             return (<>
                 <div className="header-sidebar">
                     <div className='option-menu'>
-                        <div className="Info-station" onClick={this.handleClick}>Station</div>
-                        <div className="Find-nearestStation activate">Trouver la plus proche station</div>
-                        <div className="Louer-Transport" onClick={this.handleClick}>Louer</div>
+                        <div className="Info-station" onClick={this.handleClick}>
+                            <img src={station} alt='station' className="Icon-Info-station" onClick={this.handleClick}/> 
+                            <span className="Info-station-name-menu-sidebar" onClick={this.handleClick}>Station</span>
+                        </div>
+                        <div className="Find-nearestStation activate">
+                            <img src={search} alt='search' className="Icon-Search" onClick={this.handleClick}/>
+                            <span className="search-name-menu-sidebar" onClick={this.handleClick}>La plus proche station</span>
+                        </div>
+                        <div className="Louer-Transport" onClick={this.handleClick}>
+                            <img src={key} alt='key' className="Icon-Key" onClick={this.handleClick}/>
+                            <span className="key-name-menu-sidebar" onClick={this.handleClick}>Louer</span>
+                        </div>
                     </div>
                     <div className="content-sidebar">
                         <div className="search">
@@ -64,9 +83,18 @@ class Sidebar extends React.Component {
             return (<>
                 <div className="header-sidebar">
                     <div className='option-menu'>
-                        <div className="Info-station" onClick={this.handleClick}>Station</div>
-                        <div className="Find-nearestStation" onClick={this.handleClick}>Trouver la plus proche station</div>
-                        <div className="Louer-Transport activate">Louer</div>
+                        <div className="Info-station" onClick={this.handleClick}>
+                            <img src={station} alt='station' className="Icon-Info-station" onClick={this.handleClick}/>
+                            <span className="Info-station-name-menu-sidebar" onClick={this.handleClick}>Station</span>
+                        </div>
+                        <div className="Find-nearestStation" onClick={this.handleClick}>
+                            <img src={search} alt='search' className="Icon-Search" onClick={this.handleClick}/>
+                            <span className="search-name-menu-sidebar" onClick={this.handleClick}>La plus proche station</span>
+                        </div>
+                        <div className="Louer-Transport activate" onClick={this.handleClick}>
+                            <img src={key} alt='key' className="Icon-Key" onClick={this.handleClick}/>
+                            <span className="key-name-menu-sidebar" onClick={this.handleClick}>Louer</span>
+                        </div>
                     </div>
                     <div className="content-sidebar">
                         <div className="search">
