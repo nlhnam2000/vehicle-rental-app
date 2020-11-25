@@ -1,27 +1,48 @@
 import React from 'react'
 import './App.css';
-import Menu from './components/Menu'; 
+import Menu from './components/Menu';
 import Home from './components/Home';
 import MapView from './components/MapView';
-import Signin from './components/Signin'; 
+import Signin from './components/Signin';
 import SignUp from './components/Signup';
+import { connect } from 'react-redux';
+import * as actions from './store/actions/auth';
 
 
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'; 
-function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Menu />
-        <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/home' exact component={MapView} />
-          <Route path='/signin' exact component={Signin} />
-          <Route path='/signup' exact component={SignUp} />
-        </Switch>
-      </div>
-    </Router>
-  );
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+class App extends React.Component {
+
+  componentDidMount() {
+    this.props.onCheckSignup();
+  }
+
+  render() {
+    return (
+      <Router>
+        <div className="App">
+          <Menu {...this.props} />
+          <Switch>
+            <Route path='/' exact component={Home} />
+            <Route path='/home' exact component={MapView} />
+            <Route path='/signin' exact component={Signin} />
+            <Route path='/signup' exact component={SignUp} />
+          </Switch>
+        </div>
+      </Router>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.token !== null
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onCheckSignup: () => dispatch(actions.authCheckState())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

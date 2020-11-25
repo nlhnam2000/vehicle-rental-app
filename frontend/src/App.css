@@ -38,6 +38,15 @@ ul li.nav-link:hover {
   cursor: pointer;
 }
 
+.userButton {
+  position: absolute;
+  right: 0;
+}
+
+.userButton * {
+  margin: 15px;
+}
+
 /* home */ 
 .home-item-grid img {
   width: 600px;
