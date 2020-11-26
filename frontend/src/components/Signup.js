@@ -43,7 +43,7 @@ class SignUp extends React.Component {
     handleSignup = event => {
         event.preventDefault();
         this.props.onAuth(this.state.username, this.state.email, this.state.password1, this.state.password2);
-        this.props.history.push('/');
+        this.props.history.push('/home');
     }
 
     render() {
