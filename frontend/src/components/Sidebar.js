@@ -9,7 +9,7 @@ class Sidebar extends React.Component {
         super(props)
         this.state = {
             display: 'Info-station',
-            info : []
+            listStation : []
         }
         this.handleClick = this.handleClick.bind(this)
     }
@@ -24,19 +24,22 @@ class Sidebar extends React.Component {
             this.setState(() => ({ display : 'Louer-Transport' }))
         }
     }
-    componentDidMount(){
+    componentWillMount(){
         this.LoadStation()
     }
     LoadStation(){
         axios.get('http://localhost:8000/api')
-            .then(res => {this.setState({info: res.data}); console.log(res.data)})
+            .then(res => {this.setState({listStation: res.data}); console.log(res.data)})
             .catch(e => {console.log(e)})
     }
     renderStation(){
-        const station = this.state.info
-        return <div>{station.name}</div>
+        const station = this.state.listStation
+        return station.map(item => {
+                return (<li key={item.name} className="station-name">{item.name}</li>)
+        })
     }
     render() {
+        console.log('render when ',this.state.listStation)
         if (this.state.display === 'Info-station') {
             return (<>
                 <div className="sidebar">
@@ -61,7 +64,7 @@ class Sidebar extends React.Component {
                             <input className="search-box" type="text" placeholder="Trouver station..." />
                         </div>
                         <div className="content-Info-station">
-                            {this.renderStation()}
+                            <ul>{this.renderStation()}</ul>
                         </div>
                     </div>
                 </div>
