@@ -384,7 +384,7 @@ input[type="submit"] {
   height: 100%;
 }
 .content-Info-station, .content-nearest-station, .content-louer{
-  background-color: red;
+  background-color: whitesmoke;
   height: 100%;
 }
 .Info-station{

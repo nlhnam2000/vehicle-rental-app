@@ -3,11 +3,13 @@ import '../App.css'
 import station from '../images/station.svg'
 import search from '../images/search-icon.svg'
 import key from '../images/key.svg'
+import axios from "axios"
 class Sidebar extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            display: 'Info-station'
+            display: 'Info-station',
+            info : []
         }
         this.handleClick = this.handleClick.bind(this)
     }
@@ -22,6 +24,18 @@ class Sidebar extends React.Component {
             this.setState(() => ({ display : 'Louer-Transport' }))
         }
     }
+    componentDidMount(){
+        this.LoadStation()
+    }
+    LoadStation(){
+        axios.get('http://localhost:8000/api')
+            .then(res => {this.setState({info: res.data}); console.log(res.data)})
+            .catch(e => {console.log(e)})
+    }
+    renderStation(){
+        const station = this.state.info
+        return <div>{station.name}</div>
+    }
     render() {
         if (this.state.display === 'Info-station') {
             return (<>
@@ -29,7 +43,9 @@ class Sidebar extends React.Component {
                     <div className='option-menu'>
                         <div className="Info-station activate">
                             <img src={station} alt='station' className="Icon-Info-station"/>
-                            <span className="Info-station-name-menu-sidebar">Station</span>
+                            <span className="Info-station-name-menu-sidebar">
+                                Station
+                            </span>
                         </div>
                         <div className="Find-nearestStation" onClick={this.handleClick}>
                             <img src={search} alt='search' className="Icon-Search" onClick={this.handleClick}/>
@@ -45,8 +61,8 @@ class Sidebar extends React.Component {
                             <input className="search-box" type="text" placeholder="Trouver station..." />
                         </div>
                         <div className="content-Info-station">
-                            Infomation
-                    </div>
+                            {this.renderStation()}
+                        </div>
                     </div>
                 </div>
             </>)
