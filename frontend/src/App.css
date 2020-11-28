@@ -423,7 +423,23 @@ input[type="submit"] {
 .content-sidebar .search-box:focus{
   outline: none;
 }
-.Icon-Info-station, .Icon-Search, .Icon-Key{
+.station-name{
+  display: grid;
+  grid-template-columns: 30% 70%;
+  height: 20%;
+}
+.image-station{
+  text-align: center;
+}
+.image-station .Icon-bicycle{
+  width: 80px;
+  height: 60px;
+}
+.name-station{
+  text-align: justify;
+  padding-left: 2%;
+}
+.Icon-Info-station, .Icon-Search, .Icon-Key {
   width: 50px;
   height: 35px;
 }
