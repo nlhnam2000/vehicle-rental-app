@@ -33,6 +33,27 @@ class Station(models.Model):
     def __str__(self):
         return self.name_Station
 
+class ElecBike(models.Model):
+    ID_EBike = models.CharField(primary_key = True, max_length=120)
+    Belong_Station = models.ForeignKey(Station, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.ID_EBike
+
+class Bike(models.Model):
+    ID_Bike = models.CharField(primary_key = True, max_length=120)
+    Belong_Station = models.ForeignKey(Station, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.ID_Bike
+
+class ElecMoto(models.Model):
+    ID_EMoto = models.CharField(primary_key = True, max_length=120)
+    Belong_Station = models.ForeignKey(Station, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.ID_EMoto
+
 class Rent_Detail(models.Model):
     date = models.DateField(auto_now_add=True)
     timeDepart = models.TimeField()
