@@ -4,42 +4,57 @@ import station from '../images/station.svg'
 import search from '../images/search-icon.svg'
 import key from '../images/key.svg'
 import bicycle from '../images/bicycle.svg'
+import gps from '../images/gps.svg'
 import axios from "axios"
 class Sidebar extends React.Component {
     constructor(props) {
         super(props)
+        this.searchBox = React.createRef()
+        this.form = React.createRef()
         this.state = {
             display: 'Info-station',
-            listStation: []
+            listStation: [],
+            placeholder: "Trouver Station..."
         }
         this.handleClick = this.handleClick.bind(this)
+        this.getPosition = this.getPosition.bind(this)
     }
     handleClick(e) {
         if (e.target.className === "Find-nearestStation" || e.target.className === "search-name-menu-sidebar" || e.target.className === "Icon-Search") {
-            this.setState(() => ({ display: 'Find-nearestStation' }))
+            this.setState(() => ({ display: 'Find-nearestStation' , placeholder: "Votre Position..."}))
+            this.form.current.reset()
         }
         if (e.target.className === "Info-station" || e.target.className === "Info-station-name-menu-sidebar" || e.target.className === "Icon-Info-station") {
-            this.setState(() => ({ display: 'Info-station' }))
+            this.setState(() => ({ display: 'Info-station', placeholder: "Trouver Station..." }))
+            this.form.current.reset()
         }
         if (e.target.className === "Louer-Transport" || e.target.className === "key-name-menu-sidebar" || e.target.className === "Icon-Key") {
-            this.setState(() => ({ display: 'Louer-Transport' }))
+            this.setState(() => ({ display: 'Louer-Transport', placeholder: "Louer"}))
+            this.form.current.reset()
         }
     }
-    componentWillMount() {
+    getPosition(){
+        navigator.geolocation.getCurrentPosition(position => {
+            console.log(position.coords.latitude)
+            console.log(position.coords.longitude)
+            this.searchBox.current.value = position.coords.longitude.toString() + " + " + position.coords.latitude.toString()
+        })
+    }
+    UNSAFE_componentWillMount() {
         this.LoadStation()
     }
     LoadStation() {
-        axios.get('http://localhost:8000/api')
+        axios.get('http://localhost:8000/api/stations')
             .then(res => { this.setState({ listStation: res.data }); console.log(res.data) })
             .catch(e => { console.log(e) })
     }
     renderStation() {
         const station = this.state.listStation
-        return station.map(item => {
+        return station.map((item, i) => {
             return (<>
-                <div key={item.name} className="station-name">
+                <div key={i} className="station-name">
                     <div className="image-station"><img className="Icon-bicycle" src={bicycle} alt="bicycle" /></div>
-                    <div className="name-station">{item.name}</div>
+                    <div className="name-station">{item.name_Station}</div>
                 </div>
                 <hr />
             </>
@@ -70,7 +85,9 @@ class Sidebar extends React.Component {
                     </div>
                     <div className="content-sidebar">
                         <div className="search">
-                            <input className="search-box" type="text" placeholder="Trouver station..." />
+                            <form ref={this.form}>
+                                <input className="searchBox-Trouver" type="text" placeholder= {this.state.placeholder} ref={this.searchBox}/>
+                            </form>
                         </div>
                         <div className="content-Info-station">
                             {this.renderStation()}
@@ -98,7 +115,10 @@ class Sidebar extends React.Component {
                     </div>
                     <div className="content-sidebar">
                         <div className="search">
-                            <input className="search-box" type="text" placeholder="Votre position..." />
+                            <form ref={this.form} className="formGPS">
+                                <input className="searchBox" type="text" placeholder={this.state.placeholder} ref={this.searchBox}/>
+                                <img className="Icon-gps" src={gps} alt='gps' onClick={this.getPosition} />   
+                            </form>
                         </div>
                         <div className="content-nearest-station">
                             La plus proche Station
@@ -126,7 +146,9 @@ class Sidebar extends React.Component {
                     </div>
                     <div className="content-sidebar">
                         <div className="search">
-                            <input className="search-box" type="text" placeholder="Trouver station..." />
+                            <form ref={this.form}>
+                                <input className="searchBox-Louer" type="text" placeholder={this.state.placeholder} ref={this.searchBox}/>
+                            </form>
                         </div>
                         <div className="content-louer">
                             Louer Transport

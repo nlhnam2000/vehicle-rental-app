@@ -1,10 +1,12 @@
-from rest_framework.routers import DefaultRouter
+from rest_framework import routers
 from locations.api.views import LocationViewSet
+from locations.api.views import StationViewSet
 
-
-router = DefaultRouter()
-router.register(r'', LocationViewSet, basename='locations')
+router = routers.SimpleRouter()
+router.register(r'locations', LocationViewSet)
+router.register(r'stations', StationViewSet)
 urlpatterns = router.urls
+
 
 # from django.urls import path
 

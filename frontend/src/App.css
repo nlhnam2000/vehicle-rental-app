@@ -409,7 +409,7 @@ input[type="submit"] {
   color: #32be8f;
   border-bottom: solid .2em #32be8f;
 }
-.content-sidebar .search-box{
+.content-sidebar .searchBox-Trouver, .searchBox, .searchBox-Louer{
   width: 95%;
   border: none;
   border-radius: 15px;
@@ -420,7 +420,14 @@ input[type="submit"] {
   margin-left: 3%;
   margin-top: 3%;
 }
-.content-sidebar .search-box:focus{
+.content-sidebar .searchBox{
+  width: 80%;
+  float: left;
+}
+.formGPS{
+  flex-direction: row;
+}
+.content-sidebar .searchBox-Trouver, .searchBox, .searchBox-Louer{
   outline: none;
 }
 .station-name{
@@ -439,9 +446,13 @@ input[type="submit"] {
   text-align: justify;
   padding-left: 2%;
 }
-.Icon-Info-station, .Icon-Search, .Icon-Key {
+.Icon-Info-station, .Icon-Search, .Icon-Key, .Icon-gps {
   width: 50px;
   height: 35px;
+  cursor: pointer;
+}
+.Icon-gps{
+  margin-top: 3%;
 }
 
 @media (max-width: 636px){
