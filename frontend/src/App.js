@@ -7,6 +7,7 @@ import Signin from './components/Signin';
 import SignUp from './components/Signup';
 import { connect } from 'react-redux';
 import * as actions from './store/actions/auth';
+import axios from 'axios';
 
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
