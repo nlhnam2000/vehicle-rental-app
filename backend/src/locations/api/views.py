@@ -1,11 +1,16 @@
 from locations.models import Location
-from .serializers import LocationSerializer
+from locations.models import Station
+from .serializers import LocationSerializer, StationSerializer
 from rest_framework import viewsets
-
+from django.shortcuts import render
 
 class LocationViewSet(viewsets.ModelViewSet):
     serializer_class = LocationSerializer
     queryset = Location.objects.all()
+
+class StationViewSet(viewsets.ModelViewSet):
+    serializer_class = StationSerializer
+    queryset = Station.objects.all()
 
 # from rest_framework.generics import (
 #     ListAPIView,
