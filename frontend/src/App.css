@@ -531,6 +531,7 @@ input[type="submit"] {
 .name-station{
   text-align: justify;
   padding-left: 2%;
+  padding-right: 2%;
 }
 .Icon-Info-station, .Icon-Search, .Icon-Key, .Icon-gps {
   width: 50px;

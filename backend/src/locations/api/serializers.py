@@ -11,4 +11,4 @@ class LocationSerializer(serializers.ModelSerializer):
 class StationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Station
-        fields = ('name_Station', 'quantityBike', 'quantityElecBike', 'quantityElecMoto', 'totalVehicle', 'remainVehicle', 'longitude', 'latitude')
+        fields = ('name_Station', 'latitude', 'longitude', 'address')

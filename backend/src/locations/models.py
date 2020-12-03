@@ -19,16 +19,11 @@ class User(models.Model):
     def __str__(self):
         return self.name_User
 
-
 class Station(models.Model):
     name_Station = models.CharField(max_length=120)
-    quantityBike = models.IntegerField()
-    quantityElecBike = models.IntegerField()
-    quantityElecMoto = models.IntegerField()
-    totalVehicle = models.IntegerField()
-    remainVehicle = models.IntegerField()
-    longitude = models.CharField(max_length=120)
-    latitude = models.CharField(max_length=120)
+    latitude = models.FloatField(max_length=120)
+    longitude = models.FloatField(max_length=120)
+    address = models.CharField(max_length=120, default="")
 
     def __str__(self):
         return self.name_Station

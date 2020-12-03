@@ -54,7 +54,9 @@ class Sidebar extends React.Component {
             return (<>
                 <div key={i} className="station-name">
                     <div className="image-station"><img className="Icon-bicycle" src={bicycle} alt="bicycle" /></div>
-                    <div className="name-station">{item.name_Station}</div>
+                    <div className="name-station"><b>Nom</b>: {item.name_Station} <br />
+                        <b>Address</b>: {item.address}
+                    </div>
                 </div>
                 <hr />
             </>
