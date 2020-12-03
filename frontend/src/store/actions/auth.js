@@ -24,6 +24,7 @@ export const authFail = (error) => {
 export const logout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('expirationDate');
+    localStorage.removeItem('username');
     return {
         type: actionTypes.AUTH_LOGOUT
     }
@@ -40,6 +41,7 @@ const checkAuthTimeout = expirationTime => {
 export const authLogin = (username, password) => {
     return dispatch => {
         dispatch(authStart());
+        const tempUsername = username;
         axios.post('http://localhost:8000/rest-auth/login/', {
             username: username,
             password: password
@@ -50,6 +52,7 @@ export const authLogin = (username, password) => {
                 const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
                 localStorage.setItem('token', token);
                 localStorage.setItem('expirationDate', expirationDate);
+                localStorage.setItem('username', tempUsername);
                 dispatch(authSuccess(token));
                 dispatch(checkAuthTimeout(3600));
             })
@@ -63,6 +66,7 @@ export const authLogin = (username, password) => {
 export const authSignup = (username, email, password1, password2) => {
     return dispatch => {
         dispatch(authStart());
+        const tempUsername = username;
         axios.post('http://localhost:8000/rest-auth/registration/', {
             username: username,
             email: email,
@@ -74,6 +78,7 @@ export const authSignup = (username, email, password1, password2) => {
                 const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
                 localStorage.setItem('token', token);
                 localStorage.setItem('expirationDate', expirationDate);
+                localStorage.setItem('username', tempUsername);
                 dispatch(authSuccess(token));
                 dispatch(checkAuthTimeout(3600));
             })

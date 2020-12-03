@@ -68,6 +68,10 @@ class SignIn extends React.Component {
                             </Link>
                             <input type="submit" className="btn btn-success" value="Se connecter" />
                         </form>
+                        <hr />
+                        <Link to={'/signup'} style={{ outline: 'none', textDecoration: 'none' }}>
+                            <input type="button" to={'/signup'} className="btn btn-primary signupButton" value="Creer un compte" />
+                        </Link>
                     </div>
                 </div>
             </div>
