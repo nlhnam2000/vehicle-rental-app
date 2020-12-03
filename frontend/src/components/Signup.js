@@ -40,10 +40,10 @@ class SignUp extends React.Component {
         this.setState({ password2: event.target.value });
     }
 
-    handleSignup = event => {
+    handleSignup = (event) => {
         event.preventDefault();
         this.props.onAuth(this.state.username, this.state.email, this.state.password1, this.state.password2);
-        this.props.history.push('/home');
+        // this.props.history.push('/home');
     }
 
     render() {
@@ -68,11 +68,11 @@ class SignUp extends React.Component {
                             </div>
                             <div className="input-div pass">
                                 <div className="icon">
-                                    <i className="fas fa-lock"></i>
+                                    <i className="fas fa-envelope"></i>
                                 </div>
                                 <div className="div">
                                     <h5>Email</h5>
-                                    <input type="email" className="input form-control" onChange={this.handleEmail} />
+                                    <input type="email" className="input form-control" required={false} onChange={this.handleEmail} />
                                 </div>
                             </div>
                             <div className="input-div pass">
