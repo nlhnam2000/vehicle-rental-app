@@ -21,7 +21,7 @@ class Sidebar extends React.Component {
     }
     handleClick(e) {
         if (e.target.className === "Find-nearestStation" || e.target.className === "search-name-menu-sidebar" || e.target.className === "Icon-Search") {
-            this.setState(() => ({ display: 'Find-nearestStation' , placeholder: "Votre Position..."}))
+            this.setState(() => ({ display: 'Find-nearestStation', placeholder: "Votre Position..." }))
             this.form.current.reset()
         }
         if (e.target.className === "Info-station" || e.target.className === "Info-station-name-menu-sidebar" || e.target.className === "Icon-Info-station") {
@@ -29,11 +29,11 @@ class Sidebar extends React.Component {
             this.form.current.reset()
         }
         if (e.target.className === "Louer-Transport" || e.target.className === "key-name-menu-sidebar" || e.target.className === "Icon-Key") {
-            this.setState(() => ({ display: 'Louer-Transport', placeholder: "Louer"}))
+            this.setState(() => ({ display: 'Louer-Transport', placeholder: "Louer" }))
             this.form.current.reset()
         }
     }
-    getPosition(){
+    getPosition() {
         navigator.geolocation.getCurrentPosition(position => {
             console.log(position.coords.latitude)
             console.log(position.coords.longitude)
@@ -68,10 +68,10 @@ class Sidebar extends React.Component {
             return null
         if (this.state.display === 'Info-station') {
             return (<>
-                <div className="sidebar">
+                <div className="sidebar" style={{ marginTop: '30px' }}>
                     <div className='option-menu'>
                         <div className="Info-station activate">
-                            <img src={station} alt='station' className="Icon-Info-station"/>
+                            <img src={station} alt='station' className="Icon-Info-station" />
                             <span className="Info-station-name-menu-sidebar">
                                 Station
                             </span>
@@ -88,7 +88,7 @@ class Sidebar extends React.Component {
                     <div className="content-sidebar">
                         <div className="search">
                             <form ref={this.form}>
-                                <input className="searchBox-Trouver" type="text" placeholder= {this.state.placeholder} ref={this.searchBox}/>
+                                <input className="searchBox-Trouver" type="text" placeholder={this.state.placeholder} ref={this.searchBox} />
                             </form>
                         </div>
                         <div className="content-Info-station">
@@ -107,7 +107,7 @@ class Sidebar extends React.Component {
                             <span className="Info-station-name-menu-sidebar" onClick={this.handleClick}>Station</span>
                         </div>
                         <div className="Find-nearestStation activate">
-                            <img src={search} alt='search' className="Icon-Search"/>
+                            <img src={search} alt='search' className="Icon-Search" />
                             <span className="search-name-menu-sidebar">La plus proche station</span>
                         </div>
                         <div className="Louer-Transport" onClick={this.handleClick}>
@@ -118,8 +118,8 @@ class Sidebar extends React.Component {
                     <div className="content-sidebar">
                         <div className="search">
                             <form ref={this.form} className="formGPS">
-                                <input className="searchBox" type="text" placeholder={this.state.placeholder} ref={this.searchBox}/>
-                                <img className="Icon-gps" src={gps} alt='gps' onClick={this.getPosition} />   
+                                <input className="searchBox" type="text" placeholder={this.state.placeholder} ref={this.searchBox} />
+                                <img className="Icon-gps" src={gps} alt='gps' onClick={this.getPosition} />
                             </form>
                         </div>
                         <div className="content-nearest-station">
@@ -142,14 +142,14 @@ class Sidebar extends React.Component {
                             <span className="search-name-menu-sidebar" onClick={this.handleClick}>La plus proche station</span>
                         </div>
                         <div className="Louer-Transport activate">
-                            <img src={key} alt='key' className="Icon-Key"/>
+                            <img src={key} alt='key' className="Icon-Key" />
                             <span className="key-name-menu-sidebar">Louer</span>
                         </div>
                     </div>
                     <div className="content-sidebar">
                         <div className="search">
                             <form ref={this.form}>
-                                <input className="searchBox-Louer" type="text" placeholder={this.state.placeholder} ref={this.searchBox}/>
+                                <input className="searchBox-Louer" type="text" placeholder={this.state.placeholder} ref={this.searchBox} />
                             </form>
                         </div>
                         <div className="content-louer">

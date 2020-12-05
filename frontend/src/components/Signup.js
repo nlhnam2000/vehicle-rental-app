@@ -2,9 +2,9 @@ import React from 'react'
 import '../App.css'
 import avatar from '../images/male_ava.png'
 import bg from '../images/bg.svg'
-import { Link } from 'react-router-dom'
 import * as actions from '../store/actions/auth'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 
 class SignUp extends React.Component {
@@ -43,6 +43,15 @@ class SignUp extends React.Component {
     handleSignup = (event) => {
         event.preventDefault();
         this.props.onAuth(this.state.username, this.state.email, this.state.password1, this.state.password2);
+
+        // axios.post('http://localhost:8000/api/users/', {
+        //     name_User: this.state.username,
+        //     username: this.state.email,
+        //     pointReward: 0,
+        //     history: this.state.password1,
+        // })
+        //     .then(res => { console.log(res.data) })
+        //     .catch(err => { console.log(err) })
         // this.props.history.push('/home');
     }
 
