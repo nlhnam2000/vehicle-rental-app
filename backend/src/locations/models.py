@@ -12,17 +12,36 @@ class Location(models.Model):
         return self.name
 
 
+# class User(models.Model):
+#     name_User = models.CharField(
+#         max_length=120, unique=True, default="Votre nom", blank=False)
+#     username = models.CharField(
+#         max_length=120, unique=True, default="Votre username", blank=False)
+#     # password = models.CharField(max_length=120)
+#     pointReward = models.CharField(max_length=120, default="0")
+#     history = models.TextField(max_length=500, default="")
+
+#     def __str__(self):
+#         return self.name_User
+
 class User(models.Model):
-    name_User = models.CharField(
-        max_length=120, unique=True, default="Votre nom", blank=False)
+    first_name = models.CharField(
+        max_length=120, blank=False, default="Votre nom")
+    last_name = models.CharField(
+        max_length=120, blank=False, default="Votre prenom")
     username = models.CharField(
-        max_length=120, unique=True, default="Votre username", blank=False)
-    # password = models.CharField(max_length=120)
-    pointReward = models.CharField(max_length=120, default="0")
+        max_length=120, blank=False, default="Votre username")
+    email = models.EmailField(
+        max_length=120, default="Votre email")
+    cmnd = models.CharField(max_length=120,
+                            blank=False, default="")
+    money = models.IntegerField(default=0)
     history = models.TextField(max_length=500, default="")
+    pointReward = models.IntegerField(default=0)
+    status = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name_User
+        return self.username
 
 
 class Station(models.Model):
