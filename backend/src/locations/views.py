@@ -19,4 +19,5 @@ def TrouverPosition(request):
         if(temp < Min):
             Min = temp
             result = station
-    return JsonResponse(result["fields"])
+    result1 = {'result': result['fields'], 'distance': Min}
+    return JsonResponse(result1)
