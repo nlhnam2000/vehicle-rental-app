@@ -1,8 +1,6 @@
+from rest_framework import viewsets
 from locations.models import Location, Station, User
 from .serializers import LocationSerializer, StationSerializer, UserSerializer
-from rest_framework import viewsets
-from django.shortcuts import render
-
 
 class LocationViewSet(viewsets.ModelViewSet):
     serializer_class = LocationSerializer

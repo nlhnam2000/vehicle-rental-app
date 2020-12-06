@@ -14,10 +14,14 @@ class Sidebar extends React.Component {
         this.state = {
             display: 'Info-station',
             listStation: [],
-            placeholder: "Trouver Station..."
+            placeholder: "Trouver Station...",
+            longitude: null,
+            latitude: null,
+            position: null
         }
         this.handleClick = this.handleClick.bind(this)
         this.getPosition = this.getPosition.bind(this)
+        this.findNearestStation = this.findNearestStation.bind(this)
     }
     handleClick(e) {
         if (e.target.className === "Find-nearestStation" || e.target.className === "search-name-menu-sidebar" || e.target.className === "Icon-Search") {
@@ -37,8 +41,15 @@ class Sidebar extends React.Component {
         navigator.geolocation.getCurrentPosition(position => {
             console.log(position.coords.latitude)
             console.log(position.coords.longitude)
+            this.setState({longitude: position.coords.longitude})
+            this.setState({latitude: position.coords.latitude})
             this.searchBox.current.value = position.coords.longitude.toString() + " + " + position.coords.latitude.toString()
         })
+    }
+    findNearestStation(){
+        axios.get('http://localhost:8000/locations/Trouver?longitude='+ this.state.longitude + '&latitude=' + this.state.latitude)
+            .then(res => { this.setState({position: res.data}); console.log(res.data)})
+            .catch(e => { console.log(e) })
     }
     UNSAFE_componentWillMount() {
         this.LoadStation()
@@ -121,6 +132,7 @@ class Sidebar extends React.Component {
                                 <input className="searchBox" type="text" placeholder={this.state.placeholder} ref={this.searchBox} />
                                 <img className="Icon-gps" src={gps} alt='gps' onClick={this.getPosition} />
                             </form>
+                            <button onClick={this.findNearestStation}>Trouver</button>
                         </div>
                         <div className="content-nearest-station">
                             La plus proche Station
