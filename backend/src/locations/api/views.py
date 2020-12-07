@@ -2,6 +2,7 @@ from rest_framework import viewsets
 from locations.models import Location, Station, User
 from .serializers import LocationSerializer, StationSerializer, UserSerializer
 
+
 class LocationViewSet(viewsets.ModelViewSet):
     serializer_class = LocationSerializer
     queryset = Location.objects.all()

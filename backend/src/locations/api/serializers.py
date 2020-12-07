@@ -30,4 +30,6 @@ class StationSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('name_User', 'username', 'pointReward', 'history')
+        fields = ('first_name', 'last_name', 'username',
+                  'email', 'cmnd', 'money', 'history',
+                  'pointReward', 'status')

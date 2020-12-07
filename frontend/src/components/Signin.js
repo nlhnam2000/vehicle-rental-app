@@ -51,7 +51,7 @@ class SignIn extends React.Component {
                                 </div>
                                 <div className="div">
                                     <h5>Username</h5>
-                                    <input type="text" className="input form-control" onChange={this.handleUsername} />
+                                    <input type="text" className="input form-control" style={{ width: '100%' }} onChange={this.handleUsername} />
                                 </div>
                             </div>
                             <div className="input-div pass">
@@ -60,7 +60,7 @@ class SignIn extends React.Component {
                                 </div>
                                 <div className="div">
                                     <h5>Mot de pass</h5>
-                                    <input type="password" className="input form-control" onChange={this.handlePassword} />
+                                    <input type="password" className="input form-control" style={{ width: '100%' }} onChange={this.handlePassword} />
                                 </div>
                             </div>
                             <Link to={"/"} style={{ textDecoration: 'none', textAlign: 'right' }}>
