@@ -5,6 +5,7 @@ import search from '../images/search-icon.svg'
 import key from '../images/key.svg'
 import Station from './Station'
 import NearestStation from './NearestStation'
+import Louer from './Louer'
 class Sidebar extends React.Component {
     constructor(props) {
         super(props)
@@ -17,18 +18,16 @@ class Sidebar extends React.Component {
     handleClick(e) {
         if (e.target.className === "Find-nearestStation" || e.target.className === "search-name-menu-sidebar" || e.target.className === "Icon-Search") {
             this.setState(() => ({ display: 'Find-nearestStation', placeholder: "Votre Position..." }))
-            //this.form.current.reset()
         }
         if (e.target.className === "Info-station" || e.target.className === "Info-station-name-menu-sidebar" || e.target.className === "Icon-Info-station") {
             this.setState(() => ({ display: 'Info-station', placeholder: "Trouver Station..." }))
-            //this.form.current.reset()
         }
         if (e.target.className === "Louer-Transport" || e.target.className === "key-name-menu-sidebar" || e.target.className === "Icon-Key") {
             this.setState(() => ({ display: 'Louer-Transport', placeholder: "Louer" }))
-            //this.form.current.reset()
         }
     }
     render() {
+        console.log(this.state.display)
         if (this.state.display === 'Info-station') {
             return (<>
                 <div className="sidebar">
@@ -90,16 +89,7 @@ class Sidebar extends React.Component {
                             <span className="key-name-menu-sidebar">Louer</span>
                         </div>
                     </div>
-                    <div className="content-sidebar">
-                        <div className="search">
-                            <form ref={this.form}>
-                                <input className="searchBox-Louer" type="text" placeholder={this.state.placeholder} ref={this.searchBox} />
-                            </form>
-                        </div>
-                        <div className="content-louer">
-                            Louer Transport
-                        </div>
-                    </div>
+                    <Louer placeholder={this.state.placeholder} />
                 </div>
             </>)
         }
