@@ -55,7 +55,7 @@ class Menu extends React.Component {
                                                 <Link to={'/user/info/'} className="dropdown-item">
                                                     Info
                                                 </Link>
-                                                <Link onClick={this.props.logout} className="dropdown-item">
+                                                <Link onClick={this.props.logout} className="dropdown-item" to={'/'}>
                                                     Logout
                                                 </Link>
                                             </div>

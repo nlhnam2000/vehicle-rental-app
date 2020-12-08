@@ -605,3 +605,91 @@ input[type="submit"] {
 }
 /* Louer */
 
+/* User info */ 
+.user-info-section {
+  width: 100%;
+  height: 1000px; 
+  background-color: #08e1ae;
+  background-image: linear-gradient(315deg, #08e1ae 0%, #98de5b 74%);
+  display: block;
+  z-index: -1;
+}
+
+.user-info-section .container-fluid {
+  display: flex;
+  z-index: 1;
+  position: relative;
+  margin: 20px auto;
+  top: 15%;
+}
+
+.user-info-box {
+  width: 60%;
+  height: 600px;
+  background-color: white;
+  border: 1px solid rgb(129, 214, 111);
+  border-radius: 25px;
+  /* position: absolute;
+  left: 30%; */
+  margin: 10px auto;
+  background-image: url('./images/city.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 30%; 
+  background-position: center top;
+}
+
+.user-info {
+  display: flex;
+  /* position: relative;
+  top: 19%;
+  left: 43%; */
+  margin: 110px auto;
+  flex-direction: column;
+  align-items: center;
+  margin: 12% auto;
+}
+
+.user-info .avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user-info .avatar img {
+  width: 75%;
+}
+
+.info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px auto;
+}
+
+.info .area {
+  width: 80%;
+  margin: 0 auto  ;
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+}
+
+.field {
+  margin-left: 20%;
+  margin-right: auto;
+}
+
+.data {
+  margin-left: auto;
+  margin-right: 20%;
+}
+
+.data h5 {
+  
+}
+
+/* .field {
+  font-weight: bold;
+  font-size: large;
+} */

@@ -6,6 +6,8 @@ from geopy.distance import geodesic
 from .models import Station
 
 # Create your views here.
+
+
 def TrouverPosition(request):
     longitude = request.GET.get('longitude', '')
     latitude = request.GET.get('latitude', '')
@@ -14,7 +16,8 @@ def TrouverPosition(request):
     listStation = json.loads(serializers_stations)
     Min = sys.maxsize
     for station in listStation:
-        position_Station = (station['fields']['latitude'], station['fields']['longitude'])
+        position_Station = (
+            station['fields']['latitude'], station['fields']['longitude'])
         temp = geodesic(position_Now, position_Station).km
         if(temp < Min):
             Min = temp
