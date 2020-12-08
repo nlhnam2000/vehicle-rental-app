@@ -11,20 +11,22 @@ class NearestStation extends React.Component {
         this.state = {
             longitude: null,
             latitude: null,
-            position: null
+            position: null,
+            placeholder : this.props.placeholder
         }
         this.getPosition = this.getPosition.bind(this)
         this.findNearestStation = this.findNearestStation.bind(this)
         this.renderStation = this.renderStation.bind(this)
     }
     getPosition() {
+        this.setState({placeholder: 'En trouvant votre position...Attendez-vous svl'})
         navigator.geolocation.getCurrentPosition(position => {
             console.log(position.coords.latitude)
             console.log(position.coords.longitude)
             this.setState({ longitude: position.coords.longitude })
             this.setState({ latitude: position.coords.latitude })
             this.searchBox.current.value = position.coords.longitude.toString() + " + " + position.coords.latitude.toString()
-        })
+        },null,{enableHighAccuracy: true})
     }
     findNearestStation() {
         axios.get('http://localhost:8000/locations/Trouver?longitude=' + this.state.longitude + '&latitude=' + this.state.latitude)
@@ -51,7 +53,7 @@ class NearestStation extends React.Component {
                 <div className="content-sidebar">
                     <div className="search">
                         <form ref={this.form} className="formGPS">
-                            <input className="searchBox" type="text" placeholder={this.props.placeholder} ref={this.searchBox} />
+                            <input className="searchBox" type="text" placeholder={this.state.placeholder} ref={this.searchBox} />
                             <img className="Icon-gps" src={gps} alt='gps' onClick={this.getPosition} />
                         </form>
                         <button onClick={this.findNearestStation}>Trouver</button>
