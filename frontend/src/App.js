@@ -5,9 +5,9 @@ import Home from './components/Home';
 import MapView from './components/MapView';
 import Signin from './components/Signin';
 import SignUp from './components/Signup';
+import Info from './components/Info';
 import { connect } from 'react-redux';
 import * as actions from './store/actions/auth';
-import axios from 'axios';
 
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -27,6 +27,7 @@ class App extends React.Component {
             <Route path='/home' exact component={MapView} />
             <Route path='/signin' exact component={Signin} />
             <Route path='/signup' exact component={SignUp} />
+            <Route path='/user/info' exact component={Info} />
           </Switch>
         </div>
       </Router>

@@ -65,7 +65,7 @@ class SignUp extends React.Component {
         })
             .then(res => { console.log(res.data) })
             .catch(err => { console.log(err) })
-        // this.props.history.push('/home');
+        this.props.history.push('/home');
     }
 
     render() {
