@@ -1,5 +1,5 @@
 from django.db import models
-
+import operator
 # Create your models here.
 
 
@@ -57,7 +57,7 @@ class Station(models.Model):
 class ElecBike(models.Model):
     ID_EBike = models.CharField(primary_key=True, max_length=120)
     Belong_Station = models.ForeignKey(Station, on_delete=models.CASCADE)
-
+    
     def __str__(self):
         return self.ID_EBike
 
