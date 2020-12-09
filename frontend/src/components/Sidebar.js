@@ -27,6 +27,7 @@ class Sidebar extends React.Component {
         }
     }
     render() {
+        console.log(localStorage.getItem('username'))
         console.log(this.state.display)
         if (this.state.display === 'Info-station') {
             return (<>

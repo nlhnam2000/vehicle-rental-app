@@ -16,6 +16,10 @@ class StationViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()
+    lookup_field = 'username'
+
+        
+
 
 # from rest_framework.generics import (
 #     ListAPIView,
