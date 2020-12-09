@@ -13,15 +13,19 @@ from .models import Station
 admin.site.register(Station)
 
 from .models import ElecBike
-admin.site.register(ElecBike)
+class EBikeAdmin(admin.ModelAdmin):
+    list_display = ['ID_EBike', 'Belong_Station']
+admin.site.register(ElecBike, EBikeAdmin)
 
 from .models import Bike
 class BikeAdmin(admin.ModelAdmin):
     list_display = ['ID_Bike', 'Belong_Station']
 admin.site.register(Bike, BikeAdmin)
 
-from .models import ElecMoto 
-admin.site.register(ElecMoto)
+from .models import ElecMoto
+class EMotoAdmin(admin.ModelAdmin):
+    list_display = ['ID_EMoto', 'Belong_Station']
+admin.site.register(ElecMoto, EMotoAdmin)
 
 
 
