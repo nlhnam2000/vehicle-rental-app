@@ -6,6 +6,7 @@ import * as actions from '../store/actions/auth'
 import { connect } from 'react-redux'
 import axios from 'axios'
 
+String.prototype.isNumber = function () { return /^\d+$/.test(this); }
 
 class SignUp extends React.Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class SignUp extends React.Component {
         // this.handlePass2 = this.handlePass2.bind(this);
 
         this.handleInput = this.handleInput.bind(this);
+        this.handleVerify = this.handleVerify.bind(this);
 
         this.state = {
             nom: '',
@@ -26,46 +28,51 @@ class SignUp extends React.Component {
             cmnd: '',
             // bank: '',
             password1: '',
-            password2: ''
+            password2: '',
+            verify: true
         }
 
     }
-
-    // handleUsername = event => {
-    //     this.setState({ username: event.target.value });
-    // }
-
-    // handleEmail = event => {
-    //     this.setState({ email: event.target.value });
-    // }
-
-    // handlePass1 = event => {
-    //     this.setState({ password1: event.target.value });
-    // }
-
-    // handlePass2 = event => {
-    //     this.setState({ password2: event.target.value });
-    // }
 
     handleInput = event => {
         this.setState({ [event.target.name]: event.target.value })
     }
 
+    handleVerify = async (event) => {
+        const setting = await this.setState({ [event.target.name]: event.target.value })
+        if ((this.state.password2 !== this.state.password1)) {
+            this.setState({ verify: false })
+            // console.log(this.state.password1);
+            // console.log(this.state.password2);
+            // console.log(this.state.verify);
+        }
+        else {
+            this.setState({ verify: true })
+            // console.log(this.state.password1);
+            // console.log(this.state.password2);
+            // console.log(this.state.verify);
+        }
+    }
+
     handleSignup = (event) => {
         event.preventDefault();
-        console.log(this.state);
-        this.props.onAuth(this.state.username, this.state.email, this.state.password1, this.state.password2);
+        if (this.state.verify) {
+            this.props.onAuth(this.state.username, this.state.email, this.state.password1, this.state.password2);
 
-        axios.post('http://localhost:8000/api/users/', {
-            first_name: this.state.prenom,
-            last_name: this.state.nom,
-            username: this.state.username,
-            email: this.state.email,
-            cmnd: this.state.cmnd,
-        })
-            .then(res => { console.log(res.data) })
-            .catch(err => { console.log(err) })
-        this.props.history.push('/home');
+            axios.post('http://localhost:8000/api/users/', {
+                first_name: this.state.prenom,
+                last_name: this.state.nom,
+                username: this.state.username,
+                email: this.state.email,
+                cmnd: this.state.cmnd,
+            })
+                .then(res => { console.log(res.data) })
+                .catch(err => { console.log(err) })
+            this.props.history.push('/home');
+        }
+        else {
+            alert("Invalid password");
+        }
     }
 
     render() {
@@ -136,7 +143,20 @@ class SignUp extends React.Component {
                                         <h5>Mot de pass</h5>
                                         <div>
                                             <input type="password" className="input form-control" name="password1" placeholder="Mot de pass" onChange={this.handleInput} />
-                                            <input type="password" className="input form-control" name="password2" placeholder="Le vérifier" onChange={this.handleInput} />
+                                            {
+                                                this.state.verify ?
+                                                    <input type="password" className="input form-control" name="password2" placeholder="Le vérifier" onChange={this.handleVerify} />
+                                                    :
+                                                    <input type="password" className="input form-control" name="password2" placeholder="Le vérifier" onChange={this.handleVerify} style={{ border: '3px solid red' }} />
+                                            }
+
+                                        </div>
+                                        <div className="note">
+                                            <ul>
+                                                <li>N'utilisez pas les mots de pass communs</li>
+                                                <li>N'utilisez pas une chaine de tous numéros</li>
+                                                <li>Le longueur minimum est de 8</li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>

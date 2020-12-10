@@ -342,7 +342,7 @@ ul li.nav-link:hover {
   display: flex;
   z-index: 1;
   position: relative;
-  margin: 20px auto;
+  margin: 10px auto;
   top: 10%;
 }
 
@@ -411,7 +411,7 @@ form {
 }
 
 input[type="submit"] {
-  margin-top: 20px;
+  margin-top: 5px;
   width: 100%;
   display: block;
   width: 100%;
@@ -428,6 +428,16 @@ input[type="submit"] {
   margin: 1rem 0;
   cursor: pointer;
   transition: .5s;
+}
+
+.note {
+  margin-top: 20px;
+}
+
+.note ul li {
+  font-size: smaller;
+  margin-left: 20px;
+  color: rgb(119, 119, 119);
 }
 
 .signupButton {
