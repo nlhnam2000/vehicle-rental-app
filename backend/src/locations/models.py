@@ -56,7 +56,7 @@ class Station(models.Model):
 
 class ElecBike(models.Model):
     ID_EBike = models.CharField(primary_key=True, max_length=120)
-    Belong_Station = models.ForeignKey(Station, on_delete=models.CASCADE)
+    Belong_Station = models.ForeignKey(Station, on_delete=models.CASCADE, related_name='listElecBike')
     
     def __str__(self):
         return self.ID_EBike
@@ -73,7 +73,7 @@ class Bike(models.Model):
 
 class ElecMoto(models.Model):
     ID_EMoto = models.CharField(primary_key=True, max_length=120)
-    Belong_Station = models.ForeignKey(Station, on_delete=models.CASCADE)
+    Belong_Station = models.ForeignKey(Station, on_delete=models.CASCADE, related_name='listElecMoto')
 
     def __str__(self):
         return self.ID_EMoto

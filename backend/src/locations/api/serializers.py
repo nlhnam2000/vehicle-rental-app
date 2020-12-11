@@ -24,7 +24,7 @@ class StationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Station
         fields = ('name_Station', 'latitude',
-                  'longitude', 'address', 'listBike')
+                  'longitude', 'address', 'listBike', 'listElecBike', 'listElecMoto')
 
 
 class UserSerializer(serializers.ModelSerializer):
