@@ -4,15 +4,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../store/actions/auth';
 
-
-const navbarText = {
-    color: 'black',
-    display: 'inline-block',
-    textAlign: 'center',
-    opacity: '1',
-    float: 'right'
-}
-
 class Menu extends React.Component {
 
     render() {
@@ -38,9 +29,15 @@ class Menu extends React.Component {
                                 <li className="nav-item">
                                     <Link to={'/about'} className="nav-link">About Us</Link>
                                 </li>
-                                <li className="nav-item">
-                                    <Link to={'/signin'} className="nav-link">Sign in</Link>
-                                </li>
+                                {
+                                    this.props.isAuthenticated ?
+
+                                        <div style={{ width: '0%' }}></div>
+                                        :
+                                        <li className="nav-item">
+                                            <Link to={'/signin'} className="nav-link">Sign in</Link>
+                                        </li>
+                                }
                             </ul>
 
                             {
@@ -62,7 +59,7 @@ class Menu extends React.Component {
                                         </div>
                                     </div>
                                     :
-                                    <div></div>
+                                    <div style={{ width: '0%' }}></div>
                             }
 
                         </div>
