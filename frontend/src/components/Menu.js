@@ -33,10 +33,10 @@ class Menu extends React.Component {
                                     <Link to={'/home'} className="nav-link active">Map</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={'/'} className="nav-link">About</Link>
+                                    <Link to={'/'} className="nav-link">Award</Link>
                                 </li>
                                 <li className="nav-item">
-                                    <Link to={'/'} className="nav-link">Contact</Link>
+                                    <Link to={'/about'} className="nav-link">About Us</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to={'/signin'} className="nav-link">Sign in</Link>

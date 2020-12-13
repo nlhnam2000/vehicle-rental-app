@@ -6,11 +6,13 @@ import MapView from './components/MapView';
 import Signin from './components/Signin';
 import SignUp from './components/Signup';
 import Info from './components/Info';
+import About from './components/About';
 import { connect } from 'react-redux';
 import * as actions from './store/actions/auth';
 
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 class App extends React.Component {
 
   componentDidMount() {
@@ -28,6 +30,7 @@ class App extends React.Component {
             <Route path='/signin' exact component={Signin} />
             <Route path='/signup' exact component={SignUp} />
             <Route path='/user/info' exact component={Info} />
+            <Route path='/about' exact component={About}/>
           </Switch>
         </div>
       </Router>

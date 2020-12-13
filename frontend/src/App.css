@@ -693,3 +693,121 @@ input[type="submit"] {
   font-weight: bold;
   font-size: large;
 } */
+
+
+/* About */
+.about-item {
+  margin-top: 70px;
+  height: fit-content;
+  margin-left: 200px;
+  margin-right: 200px;
+  display: grid;
+  grid-template-areas: 
+  'about-detail-1 about-title-2'
+  'about-detail-1 about-detail-2';
+}
+
+.about-detail-1 {
+  grid-area: about-detail-1;
+}
+.about-img1 img {
+  max-width: 300px;
+  grid-area: about-img-1;
+}
+.about-title-1 {
+  margin-top: 100px;
+  grid-area: about-title-1;
+  margin-bottom: 50px;
+  color: #6acc00;
+  margin-left: 100px;
+}
+.about-title-2 {
+  grid-area: about-title-2;
+  max-width: 400px;
+  height: fit-content;
+  color: #6acc00;
+  margin-left: 100px;
+
+}
+.about-detail-text-1, .about-detail-text-2{
+  margin-top: 30px;
+  text-align: justify;
+  font-size: 13pt;
+}
+.about-detail-text-1 {
+  margin-left: 100px;
+}
+.about-detail-text-2 {
+  margin-right: 150px;
+}
+
+.about-line {
+  margin-left: 100px;
+  max-width: 300px;
+}
+.about-line2 {
+  margin-right: 100px;
+  max-width: 230px;
+}
+.about-item-2 {
+  margin-top: 200px;
+  margin-left: 200px;
+  margin-right: 200px;
+  height: fit-content;
+  display: grid;
+  grid-template-areas:
+  'about-title-3 about-title-3'
+  'about-detail-3 about-detail-4';
+}
+.about-title-3 {
+  grid-area: about-title-3;
+  max-width: 400px;
+  height: fit-content;
+  color: #6acc00;
+}
+
+.about-img2 img {
+  max-width: 300px;
+  grid-area: about-img-2;
+}
+.about-item-3 {
+  margin-top: 200px;
+  margin-left: 200px;
+  margin-right: 200px;
+  height: fit-content;
+  display: grid;
+  grid-template-areas:
+  'about-title-4 about-title-4 about-title-4'
+  'about-detail-text-3 about-detail-text-4 about-detail-text-5';
+}
+
+.about-detail-text-3, .about-detail-text-4, .about-detail-text-5{
+  margin-top: 30px;
+  text-align: justify;
+  font-size: 13pt;
+  max-width: 300px;
+}
+.about-detail-text-3 {
+  grid-area: about-detail-text-3;
+}
+
+.about-detail-text-4{
+  grid-area: about-detail-text-4;
+}
+
+.about-detail-text-5{
+  grid-area: about-detail-text-5;
+}
+.about-title-4 {
+  grid-area: about-title-4;
+  max-width: 400px;
+  height: fit-content;
+  color: #6acc00;
+}
+.about-sub-title {
+  color: #6acc00;
+}
+.about-line3 {
+  margin-right: 100px;
+  max-width: 230px;
+}

@@ -24,7 +24,7 @@ class Home extends React.Component {
                         <small>*Prend en charge les plates-formes Web</small>
                         </div>
                     </div>
-                    <img src={img1} />
+                    <img className="about-img1" src={img1} />
                 </div>
                 <div className="home-item1">
                     <div className="ads"> 
@@ -94,11 +94,10 @@ class Home extends React.Component {
                 <hr className="line"></hr>
                 <div className="home-item3">
                     <div className="info1">
-                        Je suis Nam KD Moyen a été créé pour encourager les gens à utiliser 
-                        des matériaux propres pour aider à protéger l'environnement. 
-                        Avec plus de 50 gares routières, voyager en véhicules 
-                        KD Moyen est à la fois pratique et peut contribuer à la 
-                        protection de l'environnement.
+                    Xuất phát từ ứng dụng phi lợi nhuận, BusMap đặt mục tiêu mang đến giá 
+                    trị thiết thực nhằm nâng cao chất lượng đời sống người dân. 07 năm qua 
+                    là chặng đường phát triển bởi tinh thần đổi mới sáng tạo, trách nhiệm 
+                    đối với xã hội cùng ý chí kiên định “Vì một tương lai thông minh hơn”.
                     </div>
                     <div className="pic1">
                         <img src={img1}></img>
