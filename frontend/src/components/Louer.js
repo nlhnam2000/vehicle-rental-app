@@ -2,6 +2,7 @@ import React from 'react'
 import '../App.css'
 import axios from 'axios'
 import Select from 'react-select'
+
 class Louer extends React.Component {
     constructor(props) {
         super(props)
@@ -10,46 +11,52 @@ class Louer extends React.Component {
             placeholder: this.props.placeholder,
             listStation: [],
             selectedStation: null,
+            selectedTransport: null,
             isBikeSelected: false,
             isEBSelected: false,
-            isEMSelected: false
+            isEMSelected: false,
+            statusUser: null
         }
         this.LoadStation = this.LoadStation.bind(this)
+        this.LoadStatusUser = this.LoadStatusUser.bind(this)
         this.renderStation = this.renderStation.bind(this)
         this.getStation = this.getStation.bind(this)
         this.renderContentLouer = this.renderContentLouer.bind(this)
         this.getTransport = this.getTransport.bind(this)
+        this.submitLouer = this.submitLouer.bind(this)
+        this.renderPayer = this.renderPayer.bind(this)
+        this.submitPayer = this.submitPayer.bind(this)
     }
     LoadStation() {
         axios.get('http://localhost:8000/api/stations')
             .then(res => { this.setState({ listStation: res.data }) })
             .catch(e => { console.log(e) })
     }
-    UNSAFE_componentWillMount() {
+    LoadStatusUser() {
+        axios.get('http://localhost:8000/api/users/' + localStorage.getItem('username'))
+            .then(res => { this.setState({ statusUser: res.data.status }) })
+            .catch(e => console.log(e))
+    }
+    componentDidMount() {
+        this.LoadStatusUser()
         this.LoadStation()
     }
     getStation(selectedStation) {
-        if(this.state.selectedStation === null)
-            this.setState({ selectedStation, isBikeSelected: false, isEBSelected: false, isEMSelected: false })
-        if(this.state.selectedStation !== null){
-            this.setState({ selectedStation, isBikeSelected: false, isEBSelected: false, isEMSelected: false })
-            this.check.current.value = null
-        }
+        this.setState({ selectedStation, isBikeSelected: false, isEBSelected: false, isEMSelected: false })
     }
     getTransport(e) {
-        console.log(e)
         if (e === null) {
-            this.setState({ isBikeSelected: false, isEBSelected: false, isEMSelected: false })
+            this.setState({ isBikeSelected: false, isEBSelected: false, isEMSelected: false, selectedTransport: null })
         }
         if (e !== null) {
             if (e.name === 'bike') {
-                this.setState({ isEBSelected: true, isEMSelected: true })
+                this.setState({ isEBSelected: true, isEMSelected: true, selectedTransport: e.value })
             }
             if (e.name === 'ebike') {
-                this.setState({ isBikeSelected: true, isEMSelected: true })
+                this.setState({ isBikeSelected: true, isEMSelected: true, selectedTransport: e.value })
             }
             if (e.name === 'emoto') {
-                this.setState({ isEBSelected: true, isBikeSelected: true })
+                this.setState({ isEBSelected: true, isBikeSelected: true, selectedTransport: e.value })
             }
         }
     }
@@ -78,14 +85,14 @@ class Louer extends React.Component {
                 break;
             }
         }
-        var optionsBike = listB.map((item) => {
-            return ({ label: item, value: item, name: 'bike' })
+        var optionsBike = listB.filter(item => {return item.Available}).map(
+                item => { return ({ label: item.ID_Bike, value: item.ID_Bike, name: 'bike' })
         })
-        var optionsEBike = listEB.map((item) => {
-            return ({ label: item, value: item, name: 'ebike' })
+        var optionsEBike = listEB.filter(item => {return item.Available}).map(
+                item => { return ({ label: item.ID_EBike, value: item.ID_EBike, name: 'ebike' })
         })
-        var optionsEMoto = listEM.map((item) => {
-            return ({ label: item, value: item, name: 'emoto' })
+        var optionsEMoto = listEM.filter(item => {return item.Available}).map(
+                item => { return ({ label: item.ID_EMoto, value: item.ID_EMoto, name: 'emoto' })
         })
         return (<>
             <Select className='react-select-container'
@@ -118,30 +125,65 @@ class Louer extends React.Component {
             />
         </>)
     }
+    submitLouer() {
+        var username = localStorage.getItem('username')
+        axios.post('http://localhost:8000/locations/Louer', { username: username, transport: this.state.selectedTransport, selectedStation: this.state.selectedStation.value })
+            .then(res => { this.setState({ statusUser: res.data.status }) })
+            .catch(e => (console.log(e)))
+    }
+    renderPayer() {
+        return (<h1>Payer Here</h1>)
+    }
+    submitPayer(){
+        var username = localStorage.getItem('username')
+        axios.post('http://localhost:8000/locations/Payer', { username: username})
+            .then(res => { this.setState({ statusUser: res.data.status }) })
+            .catch(e => (console.log(e)))
+    }
     render() {
-        if (!this.state.selectedStation) {
-            return (<div className="content-sidebar">
-                <div className="search">
-                    Choisir le station
-                    {this.renderStation()}
+        console.log(this.state.statusUser)
+        if (this.state.statusUser !== null) {
+            if (!this.state.statusUser) {
+                if (!this.state.selectedStation) {
+                    return (<div className="content-sidebar">
+                        <div className="search">
+                            Choisir le station
+                        {this.renderStation()}
+                        </div>
+                        <div className="content-louer">
+                            Selecter le station pour louer
                 </div>
-                <div className="content-louer">
-                    Selecter le station pour louer
-                </div>
-            </div>)
+                    </div>)
+                }
+                if (this.state.selectedStation) {
+                    return (<div className="content-sidebar">
+                        <div className="search">
+                            Choisir le station
+                        {this.renderStation()}
+                        </div>
+                        <div className="content-louer">
+                            Choisir le Transport
+                        {this.renderContentLouer()}
+                        </div>
+                        <button onClick={this.submitLouer}>Louer</button>
+                    </div>)
+                }
+            }
+            else {
+                return (<div className="content-sidebar">
+                    <div className="search">
+                        Choisir le station
+                        {this.renderStation()}
+                    </div>
+                    <div className="content-louer">
+                        {this.renderPayer()}
+                        <button onClick={this.submitPayer}>Payer</button>
+                    </div>
+                </div>)
+            }
         }
-        if (this.state.selectedStation) {
-            return (<div className="content-sidebar">
-                <div className="search">
-                    Choisir le station
-                    {this.renderStation()}
-                </div>
-                <div className="content-louer">
-                    Choisir le Transport
-                    {this.renderContentLouer()}
-                </div>
-                <button>Louer</button>
-            </div>)
+        else {
+            return (<div className="content-sidebar"></div>)
         }
     }
 }

@@ -6,4 +6,3 @@ router.register(r'locations', LocationViewSet)
 router.register(r'stations', StationViewSet)
 router.register(r'users', UserViewSet)
 urlpatterns = router.urls
-

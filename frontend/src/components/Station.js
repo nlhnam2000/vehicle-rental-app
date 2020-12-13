@@ -30,7 +30,9 @@ class Station extends React.Component {
                     <div className="image-station"><img className="Icon-bicycle" src={bicycle} alt="bicycle" /></div>
                     <div className="name-station"><b>Nom</b>: {item.name_Station} <br />
                         <b>Address</b>: {item.address} <br />
-                        <b>Available</b>: {item.listBike.length + item.listElecBike.length + item.listElecMoto.length}
+                        <b>Available</b>: {item.listBike.filter(i => {return i.Available === true}).length 
+                                        + item.listElecBike.filter(i => {return i.Available === true}).length
+                                        + item.listElecMoto.filter(i => {return i.Available === true}).length}
                     </div>
                 </div>
                 <hr />
@@ -49,7 +51,9 @@ class Station extends React.Component {
                     <div className="image-station"><img className="Icon-bicycle" src={bicycle} alt="bicycle" /></div>
                     <div className="name-station"><b>Nom</b>: {item.name_Station} <br />
                         <b>Address</b>: {item.address} <br />
-                        <b>Available</b>: {item.listBike.length}
+                        <b>Available</b>: {item.listBike.filter(i => {return i.Available === true}).length 
+                                        + item.listElecBike.filter(i => {return i.Available === true}).length
+                                        + item.listElecMoto.filter(i => {return i.Available === true}).length}
                     </div>
                 </div>
                 <hr />

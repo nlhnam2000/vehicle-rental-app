@@ -1,5 +1,5 @@
 from django.db import models
-import operator
+
 # Create your models here.
 
 
@@ -11,18 +11,14 @@ class Location(models.Model):
     def __str__(self):
         return self.name
 
+class Station(models.Model):
+    name_Station = models.CharField(max_length=120)
+    latitude = models.FloatField(max_length=120)
+    longitude = models.FloatField(max_length=120)
+    address = models.CharField(max_length=120, default="")
 
-# class User(models.Model):
-#     name_User = models.CharField(
-#         max_length=120, unique=True, default="Votre nom", blank=False)
-#     username = models.CharField(
-#         max_length=120, unique=True, default="Votre username", blank=False)
-#     # password = models.CharField(max_length=120)
-#     pointReward = models.CharField(max_length=120, default="0")
-#     history = models.TextField(max_length=500, default="")
-
-#     def __str__(self):
-#         return self.name_User
+    def __str__(self):
+        return self.name_Station
 
 class User(models.Model):
     first_name = models.CharField(
@@ -39,33 +35,27 @@ class User(models.Model):
     history = models.TextField(max_length=500, default="")
     pointReward = models.IntegerField(default=0)
     status = models.BooleanField(default=False)
+    transportLouer = models.CharField(max_length=120 ,default="")
+    stationDepart = models.CharField(max_length=120 ,default="")
 
     def __str__(self):
         return self.username
 
-
-class Station(models.Model):
-    name_Station = models.CharField(max_length=120)
-    latitude = models.FloatField(max_length=120)
-    longitude = models.FloatField(max_length=120)
-    address = models.CharField(max_length=120, default="")
-
-    def __str__(self):
-        return self.name_Station
-
-
 class ElecBike(models.Model):
     ID_EBike = models.CharField(primary_key=True, max_length=120)
-    Belong_Station = models.ForeignKey(Station, on_delete=models.CASCADE, related_name='listElecBike')
-    
+    Belong_Station = models.ForeignKey(Station,
+                                       on_delete=models.CASCADE, related_name='listElecBike')
+    Available = models.BooleanField(default=True)
+
     def __str__(self):
         return self.ID_EBike
 
 
 class Bike(models.Model):
     ID_Bike = models.CharField(primary_key=True, max_length=120)
-    Belong_Station = models.ForeignKey(
-        Station, on_delete=models.CASCADE, related_name='listBike')
+    Belong_Station = models.ForeignKey(Station,
+                                       on_delete=models.CASCADE, related_name='listBike')
+    Available = models.BooleanField(default=True)
 
     def __str__(self):
         return self.ID_Bike
@@ -73,7 +63,9 @@ class Bike(models.Model):
 
 class ElecMoto(models.Model):
     ID_EMoto = models.CharField(primary_key=True, max_length=120)
-    Belong_Station = models.ForeignKey(Station, on_delete=models.CASCADE, related_name='listElecMoto')
+    Belong_Station = models.ForeignKey(Station,
+                                       on_delete=models.CASCADE, related_name='listElecMoto')
+    Available = models.BooleanField(default=True)
 
     def __str__(self):
         return self.ID_EMoto

@@ -18,7 +18,6 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
     lookup_field = 'username'
 
-        
 
 
 # from rest_framework.generics import (
