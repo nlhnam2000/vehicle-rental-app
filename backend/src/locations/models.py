@@ -32,11 +32,12 @@ class User(models.Model):
     cmnd = models.CharField(max_length=120,
                             blank=False, default="")
     money = models.IntegerField(default=0)
-    history = models.TextField(max_length=500, default="")
     pointReward = models.IntegerField(default=0)
     status = models.BooleanField(default=False)
     transportLouer = models.CharField(max_length=120 ,default="")
     stationDepart = models.CharField(max_length=120 ,default="")
+    stationArrive = models.CharField(max_length=120, default="")
+    tempsDepart = models.CharField(max_length=120, default="")
 
     def __str__(self):
         return self.username
@@ -72,17 +73,9 @@ class ElecMoto(models.Model):
 
 
 class Rent_Detail(models.Model):
-    date = models.DateField(auto_now_add=True)
-    timeDepart = models.TimeField()
-    timeArrive = models.TimeField()
-    stationDepart = models.ForeignKey(
-        Station, related_name='rentdetail_stationArrive',
-        on_delete=models.CASCADE)
-    stationArrive = models.ForeignKey(
-        Station, related_name='rentdetail_stationDepart',
-        on_delete=models.CASCADE)
-    cost = models.DecimalField(max_digits=10, decimal_places=2)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-    def __date__(self):
-        return self
+    timeDepart = models.CharField(max_length=120, default="")
+    timeArrive = models.CharField(max_length=120, default="")
+    stationDepart = models.CharField(max_length=120, default="")
+    stationArrive = models.CharField(max_length=120, default="")
+    cost = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='history')
