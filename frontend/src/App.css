@@ -821,3 +821,90 @@ input[type="submit"] {
   margin-right: 100px;
   max-width: 230px;
 }
+
+/* Award */
+.award-item {
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 100px;
+  display: grid;
+  grid-template-areas: 
+  'award-img-1 award-detail-1';
+}
+.award-title-1 {
+  grid-area: award-title-1;
+  margin-top: 100px;
+  margin-bottom: 50px;
+  color: #6acc00;
+  margin-left: 100px;
+}
+.award-item img {
+  max-height: 300px;
+  grid-area: award-img-1;
+}
+.award-detail-1 {
+  grid-area: award-detail-1;
+  max-height: 300px;
+  margin: auto;
+  margin-left: 100px;
+}
+.award-detail-text-1, .award-detail-text-2 {
+  text-align: justify;
+  font-size: 13pt;
+}
+.award-detail-text-2 {
+  margin-top: 50px;
+}
+
+.award-item-2 {
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 50px;
+  display: grid;
+  grid-template-areas:
+  'award-img1 award-promo-1'
+  'award-img2 award-promo-2'
+  'award-img3 award-promo-3';
+}
+.award-title-2 {
+  grid-area: award-title-2;
+  margin-top: 200px;
+  margin-left: 200px;
+  color: #6acc00;
+}
+.award-line {
+  max-width: 450px;
+  margin-left: 200px;
+}
+.award-img1 {
+  grid-area: award-img1;
+}
+.award-img2 {
+  grid-area: award-img2;
+}
+.award-img3 {
+  grid-area: award-img3;
+}
+.award-img1, .award-img2, .award-img3 {
+  max-height: 200px;
+  margin-bottom: 30px;
+  margin-right: 0;
+  padding: 0;
+  margin: auto;
+}
+.award-promo-1 {
+  grid-area: award-promo-1;
+}
+.award-promo-2 {
+  grid-area: award-promo-2;
+}
+.award-promo-3 {
+  grid-area: award-promo-3;
+}
+.award-promo-1, .award-promo-2, .award-promo-3 {
+  margin: auto;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+  font-size: 13pt;
+}
