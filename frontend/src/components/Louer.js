@@ -11,6 +11,7 @@ class Louer extends React.Component {
             placeholder: this.props.placeholder,
             listStation: [],
             selectedStation: null,
+            selectedArriveStation: null,
             selectedTransport: null,
             isBikeSelected: false,
             isEBSelected: false,
@@ -20,7 +21,9 @@ class Louer extends React.Component {
         this.LoadStation = this.LoadStation.bind(this)
         this.LoadStatusUser = this.LoadStatusUser.bind(this)
         this.renderStation = this.renderStation.bind(this)
+        this.renderArriveStation = this.renderArriveStation.bind(this)
         this.getStation = this.getStation.bind(this)
+        this.getArriveStation = this.getArriveStation.bind(this)
         this.renderContentLouer = this.renderContentLouer.bind(this)
         this.getTransport = this.getTransport.bind(this)
         this.submitLouer = this.submitLouer.bind(this)
@@ -134,11 +137,28 @@ class Louer extends React.Component {
     renderPayer() {
         return (<h1>Payer Here</h1>)
     }
-    submitPayer(){
+    submitPayer() {
         var username = localStorage.getItem('username')
-        axios.post('http://localhost:8000/locations/Payer', { username: username})
+        axios.post('http://localhost:8000/locations/Payer', { username: username, stationArrive: this.state.selectedArriveStation.value})
             .then(res => { this.setState({ statusUser: res.data.status }) })
             .catch(e => (console.log(e)))
+    }
+    getArriveStation(selectedArriveStation) {
+        this.setState({ selectedArriveStation })
+    }
+    renderArriveStation() {
+        const station = this.state.listStation
+        var options = station.map((item) => {
+            return ({ label: item.name_Station, value: item.name_Station })
+        })
+        return (<Select className='react-select-container'
+            options={options}
+            isClearable='true'
+            isSearchable='true'
+            placeholder='Choisir le station'
+            classNamePrefix='react-select'
+            onChange={this.getArriveStation}
+        />)
     }
     render() {
         console.log(this.state.statusUser)
@@ -172,10 +192,11 @@ class Louer extends React.Component {
             else {
                 return (<div className="content-sidebar">
                     <div className="search">
-                        Choisir le station
-                        {this.renderStation()}
+                        <h3>Vous êtes en train de louer</h3>
                     </div>
                     <div className="content-louer">
+                        Choisir le station pour revenir
+                        {this.renderArriveStation()}
                         {this.renderPayer()}
                         <button onClick={this.submitPayer}>Payer</button>
                     </div>
@@ -183,7 +204,7 @@ class Louer extends React.Component {
             }
         }
         else {
-            return (<div className="content-sidebar"></div>)
+            return (<div className="content-sidebar"><h1>Loading...</h1></div>)
         }
     }
 }
