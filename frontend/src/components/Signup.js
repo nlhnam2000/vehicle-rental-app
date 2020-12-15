@@ -6,19 +6,19 @@ import * as actions from '../store/actions/auth'
 import { connect } from 'react-redux'
 import axios from 'axios'
 
-String.prototype.isNumber = function () { return /^\d+$/.test(this); }
+String.prototype.isNumber = () => {
+    return /^\d+$/.test(this);
+}
+
+
 
 class SignUp extends React.Component {
     constructor(props) {
         super(props);
 
-        // this.handleUsername = this.handleUsername.bind(this);
-        // this.handleEmail = this.handleEmail.bind(this);
-        // this.handlePass1 = this.handlePass1.bind(this);
-        // this.handlePass2 = this.handlePass2.bind(this);
-
         this.handleInput = this.handleInput.bind(this);
         this.handleVerify = this.handleVerify.bind(this);
+        // this.isNumber = this.isNumber.bind(this);
 
         this.state = {
             nom: '',
@@ -26,10 +26,10 @@ class SignUp extends React.Component {
             username: '',
             email: '',
             cmnd: '',
-            // bank: '',
-            password1: '',
-            password2: '',
-            verify: true
+            password1: null,
+            password2: null,
+            verify: false,
+            message: null
         }
 
     }
@@ -40,25 +40,47 @@ class SignUp extends React.Component {
 
     handleVerify = async (event) => {
         const setting = await this.setState({ [event.target.name]: event.target.value })
-        if ((this.state.password2 !== this.state.password1)) {
-            this.setState({ verify: false })
-            // console.log(this.state.password1);
-            // console.log(this.state.password2);
-            // console.log(this.state.verify);
+        if (this.state.password1.length < 8) {
+            this.setState({
+                verify: false,
+                message: 'La longueur minumun doit plus grande que 8 !'
+            })
+            console.log(this.state.message);
+            console.log(this.state.verify);
         }
+        else if (/^\d+$/.test(this.state.password1)) {
+            this.setState({
+                verify: false,
+                message: "N'utilisez pas une chaine de tous numéros !"
+            })
+            console.log(this.state.message);
+            console.log(this.state.verify);
+        }
+        else if (this.state.password1 !== this.state.password2) {
+            this.setState({
+                verify: false,
+                message: "Mot de pass n'est pas vérifié !"
+            })
+            console.log(this.state.message);
+            console.log(this.state.verify);
+        }
+        // else if ((this.state.password1 === this.state.password2) && this.isNumber(this.state.password1)) {
+        //     this.setState({
+        //         verify: false,
+        //         message: 'Password cannot contain all numbers !'
+        //     })
+        //     console.log(this.state.message);
+        //     console.log(this.state.verify);
+        // }
         else {
             this.setState({ verify: true })
-            // console.log(this.state.password1);
-            // console.log(this.state.password2);
-            // console.log(this.state.verify);
+            console.log(this.state.verify);
         }
     }
 
     handleSignup = (event) => {
         event.preventDefault();
         if (this.state.verify) {
-            this.props.onAuth(this.state.username, this.state.email, this.state.password1, this.state.password2);
-
             axios.post('http://localhost:8000/api/users/', {
                 first_name: this.state.prenom,
                 last_name: this.state.nom,
@@ -66,12 +88,18 @@ class SignUp extends React.Component {
                 email: this.state.email,
                 cmnd: this.state.cmnd,
             })
-                .then(res => { console.log(res.data) })
-                .catch(err => { console.log(err) })
-            this.props.history.push('/home');
+                .then(res => {
+                    console.log(res.data);
+                    this.props.onAuth(this.state.username, this.state.email, this.state.password1, this.state.password2);
+                    // this.props.history.push('/home');
+                })
+                .catch(err => {
+                    console.log(this.props.error);
+                    alert(err);
+                })
         }
         else {
-            alert("Invalid password");
+            alert(this.state.message);
         }
     }
 
@@ -80,11 +108,11 @@ class SignUp extends React.Component {
             <div className="signin-section">
                 <div className="container-fluid">
                     <div className="background-img">
-                        <img src={bg} />
+                        <img src={bg} alt="" />
                     </div>
                     <div className="signup-content">
                         <form className="form-group" onSubmit={this.handleSignup}>
-                            <img src={avatar} className="avatar" />
+                            <img src={avatar} className="avatar" alt="" />
                             <h2 className="title text-uppercase text-center" style={{ color: "black", marginBottom: '20px' }}>Register votre compte</h2>
                             <div className="form-section">
                                 <div className="input-div name">
@@ -142,7 +170,7 @@ class SignUp extends React.Component {
                                     <div className="div">
                                         <h5>Mot de pass</h5>
                                         <div>
-                                            <input type="password" className="input form-control" name="password1" placeholder="Mot de pass" onChange={this.handleInput} />
+                                            <input type="password" className="input form-control" name="password1" placeholder="Mot de pass" onChange={this.handleVerify} />
                                             {
                                                 this.state.verify ?
                                                     <input type="password" className="input form-control" name="password2" placeholder="Le vérifier" onChange={this.handleVerify} />
@@ -172,7 +200,8 @@ class SignUp extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        loading: state.loading
+        loading: state.loading,
+        error: state.error
     }
 }
 
@@ -182,4 +211,5 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp); 
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+

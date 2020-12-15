@@ -11,6 +11,7 @@ class Location(models.Model):
     def __str__(self):
         return self.name
 
+
 class Station(models.Model):
     name_Station = models.CharField(max_length=120)
     latitude = models.FloatField(max_length=120)
@@ -20,12 +21,16 @@ class Station(models.Model):
     def __str__(self):
         return self.name_Station
 
+
 class Award(models.Model):
     name_Award = models.CharField(max_length=120)
     value = models.FloatField()
     point = models.IntegerField()
+
     def __str__(self):
         return self.name_Award
+
+
 class User(models.Model):
     first_name = models.CharField(
         max_length=120, blank=False, default="Votre nom")
@@ -40,15 +45,17 @@ class User(models.Model):
     money = models.IntegerField(default=0)
     pointReward = models.IntegerField(default=0)
     status = models.BooleanField(default=False)
-    transportLouer = models.CharField(max_length=120 ,default="")
-    stationDepart = models.CharField(max_length=120 ,default="")
+    transportLouer = models.CharField(max_length=120, default="")
+    stationDepart = models.CharField(max_length=120, default="")
     stationArrive = models.CharField(max_length=120, default="")
     tempsDepart = models.CharField(max_length=120, default="")
     isGiveBack = models.CharField(max_length=120, default="")
 
     rewardList = models.ManyToManyField(Award)
+
     def __str__(self):
         return self.username
+
 
 class ElecBike(models.Model):
     ID_EBike = models.CharField(primary_key=True, max_length=120)
@@ -86,5 +93,5 @@ class Rent_Detail(models.Model):
     stationDepart = models.CharField(max_length=120, default="")
     stationArrive = models.CharField(max_length=120, default="")
     cost = models.IntegerField()
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='history')
-
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='history')
