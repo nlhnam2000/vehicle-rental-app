@@ -40,6 +40,7 @@ def LouerTransport(request):
     user.transportLouer = transport
     user.stationDepart = station
     user.tempsDepart = getDateTimeNow()
+    user.isGiveBack = ''
     user.save()
     if (transport[0] == 'B'):
         bike = Bike.objects.get(ID_Bike=transport)
@@ -58,11 +59,10 @@ def LouerTransport(request):
     return JsonResponse(users.data)
 
 @api_view(['GET', 'POST'])
-def PayerTransport(request):
+def RevenirTransport(request):
     user_name = request.data["username"]
     stationArrive = request.data["stationArrive"]
     user = User.objects.get(username=user_name)
-    #create rent_detail
     rent_detail = Rent_Detail.objects.create(user = user,
                                              stationDepart=user.stationDepart,
                                              stationArrive=stationArrive,
@@ -70,8 +70,6 @@ def PayerTransport(request):
                                              timeDepart=user.tempsDepart,
                                              timeArrive=getDateTimeNow())
     rent_detail.save()
-    #
-    user.status = not(user.status)
     transport = user.transportLouer
     if (transport[0] == 'B'):
         bike = Bike.objects.get(ID_Bike=transport)
@@ -92,6 +90,17 @@ def PayerTransport(request):
     user.transportLouer = ''
     user.stationDepart = ''
     user.tempsDepart = ''
+    user.isGiveBack = 'Y'
+    user.save()
+    users = UserSerializer(user)
+    return JsonResponse(users.data)
+
+@api_view(['GET', 'POST'])
+def PayerTransport(request):
+    user_name = request.data["username"]
+    user = User.objects.get(username=user_name)
+    user.status = not(user.status)
+    user.isGiveBack = ''
     user.save()
     users = UserSerializer(user)
     return JsonResponse(users.data)

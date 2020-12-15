@@ -50,4 +50,4 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ('first_name', 'last_name', 'username',
                   'email', 'cmnd', 'money', 'history',
-                  'pointReward', 'status', 'transportLouer', 'stationDepart', 'tempsDepart')
+                  'pointReward', 'status', 'transportLouer', 'stationDepart', 'tempsDepart', "isGiveBack")

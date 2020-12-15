@@ -38,6 +38,7 @@ class User(models.Model):
     stationDepart = models.CharField(max_length=120 ,default="")
     stationArrive = models.CharField(max_length=120, default="")
     tempsDepart = models.CharField(max_length=120, default="")
+    isGiveBack = models.CharField(max_length=120, default="")
 
     def __str__(self):
         return self.username

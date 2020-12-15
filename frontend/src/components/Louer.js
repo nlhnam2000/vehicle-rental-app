@@ -16,7 +16,8 @@ class Louer extends React.Component {
             isBikeSelected: false,
             isEBSelected: false,
             isEMSelected: false,
-            statusUser: null
+            statusUser: null,
+            isGiveBack: null
         }
         this.LoadStation = this.LoadStation.bind(this)
         this.LoadStatusUser = this.LoadStatusUser.bind(this)
@@ -27,7 +28,7 @@ class Louer extends React.Component {
         this.renderContentLouer = this.renderContentLouer.bind(this)
         this.getTransport = this.getTransport.bind(this)
         this.submitLouer = this.submitLouer.bind(this)
-        this.renderPayer = this.renderPayer.bind(this)
+        this.submitRevenir = this.submitRevenir.bind(this)
         this.submitPayer = this.submitPayer.bind(this)
     }
     LoadStation() {
@@ -37,7 +38,7 @@ class Louer extends React.Component {
     }
     LoadStatusUser() {
         axios.get('http://localhost:8000/api/users/' + localStorage.getItem('username'))
-            .then(res => { this.setState({ statusUser: res.data.status }) })
+            .then(res => { this.setState({ statusUser: res.data.status, isGiveBack: res.data.isGiveBack }) })
             .catch(e => console.log(e))
     }
     componentDidMount() {
@@ -131,16 +132,25 @@ class Louer extends React.Component {
     submitLouer() {
         var username = localStorage.getItem('username')
         axios.post('http://localhost:8000/locations/Louer', { username: username, transport: this.state.selectedTransport, selectedStation: this.state.selectedStation.value })
-            .then(res => { this.setState({ statusUser: res.data.status }) })
+            .then(res => { this.setState({ statusUser: res.data.status, isGiveBack: null}) })
             .catch(e => (console.log(e)))
     }
-    renderPayer() {
-        return (<h1>Payer Here</h1>)
+    submitRevenir() {
+        if (this.state.selectedArriveStation === null) {
+            this.setState({ isGiveBack: 'N' })
+        }
+        else {
+            var username = localStorage.getItem('username')
+            axios.post('http://localhost:8000/locations/Revenir', { username: username, stationArrive: this.state.selectedArriveStation.value})
+                .then(res => this.setState({ isGiveBack: res.data.isGiveBack }))
+                .catch(e => console.log(e))
+        }
     }
     submitPayer() {
         var username = localStorage.getItem('username')
-        axios.post('http://localhost:8000/locations/Payer', { username: username, stationArrive: this.state.selectedArriveStation.value})
-            .then(res => { this.setState({ statusUser: res.data.status }) })
+        axios.post('http://localhost:8000/locations/Payer', { username: username})
+            .then(res => { this.setState({ statusUser: res.data.status, isGiveBack: res.data.isGiveBack, 
+                                           isBikeSelected: false, isEBSelected: false, isEMSelected: false }) })
             .catch(e => (console.log(e)))
     }
     getArriveStation(selectedArriveStation) {
@@ -190,17 +200,42 @@ class Louer extends React.Component {
                 }
             }
             else {
-                return (<div className="content-sidebar">
-                    <div className="search">
-                        <h3>Vous êtes en train de louer</h3>
-                    </div>
-                    <div className="content-louer">
-                        Choisir le station pour revenir
-                        {this.renderArriveStation()}
-                        {this.renderPayer()}
-                        <button onClick={this.submitPayer}>Payer</button>
-                    </div>
-                </div>)
+                if (this.state.isGiveBack === null || this.state.isGiveBack === '') {
+                    return (<div className="content-sidebar">
+                        <div className="search">
+                            <h3>Vous êtes en train de louer</h3>
+                        </div>
+                        <div className="content-louer">
+                            Choisir le station pour revenir
+                            {this.renderArriveStation()}
+                            <button onClick={this.submitRevenir}>Revenir</button>
+                        </div>
+                    </div>)
+                }
+                if (this.state.isGiveBack === 'N') {
+                    return (<div className="content-sidebar">
+                        <div className="search">
+                            <h3>Vous êtes en train de louer</h3>
+                        </div>
+                        <div className="content-louer">
+                            Choisir le station pour revenir
+                            {this.renderArriveStation()}
+                            <h3>Entrez votre arrive station, s'il vous plait</h3>
+                            <button onClick={this.submitRevenir}>Revenir</button>
+                        </div>
+                    </div>)
+                }
+                if (this.state.isGiveBack === 'Y') {
+                    return (<div className="content-sidebar">
+                        <div className="search">
+                            <h3>Payer, s'il vous plait</h3>
+                        </div>
+                        <div className="content-louer">
+                            <h3>Le prix:</h3> 
+                            <button onClick={this.submitPayer}>Payer</button>
+                        </div>
+                    </div>)
+                }
             }
         }
         else {
