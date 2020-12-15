@@ -54,12 +54,9 @@ class RentDetailSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     history = RentDetailSerializer(many=True, read_only=True)
-<<<<<<< HEAD
-=======
-
->>>>>>> master
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username',
                   'email', 'cmnd', 'money', 'history',
-                  'pointReward', 'status', 'transportLouer', 'stationDepart', 'tempsDepart', "isGiveBack")
+                  'pointReward', 'status', 'transportLouer',
+                  'stationDepart','tempsDepart', "isGiveBack", "cost")

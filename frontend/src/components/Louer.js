@@ -17,7 +17,8 @@ class Louer extends React.Component {
             isEBSelected: false,
             isEMSelected: false,
             statusUser: null,
-            isGiveBack: null
+            isGiveBack: null,
+            cost: null
         }
         this.LoadStation = this.LoadStation.bind(this)
         this.LoadStatusUser = this.LoadStatusUser.bind(this)
@@ -38,7 +39,7 @@ class Louer extends React.Component {
     }
     LoadStatusUser() {
         axios.get('http://localhost:8000/api/users/' + localStorage.getItem('username'))
-            .then(res => { this.setState({ statusUser: res.data.status, isGiveBack: res.data.isGiveBack }) })
+            .then(res => { this.setState({ statusUser: res.data.status, isGiveBack: res.data.isGiveBack, cost: res.data.cost }) })
             .catch(e => console.log(e))
     }
     componentDidMount() {
@@ -142,14 +143,14 @@ class Louer extends React.Component {
         else {
             var username = localStorage.getItem('username')
             axios.post('http://localhost:8000/locations/Revenir', { username: username, stationArrive: this.state.selectedArriveStation.value})
-                .then(res => this.setState({ isGiveBack: res.data.isGiveBack }))
+                .then(res => this.setState({ isGiveBack: res.data.isGiveBack, cost: res.data.cost }))
                 .catch(e => console.log(e))
         }
     }
     submitPayer() {
         var username = localStorage.getItem('username')
         axios.post('http://localhost:8000/locations/Payer', { username: username})
-            .then(res => { this.setState({ statusUser: res.data.status, isGiveBack: res.data.isGiveBack, 
+            .then(res => { this.setState({ statusUser: res.data.status, isGiveBack: res.data.isGiveBack, cost: res.data.cost, 
                                            isBikeSelected: false, isEBSelected: false, isEMSelected: false }) })
             .catch(e => (console.log(e)))
     }
@@ -231,7 +232,7 @@ class Louer extends React.Component {
                             <h3>Payer, s'il vous plait</h3>
                         </div>
                         <div className="content-louer">
-                            <h3>Le prix:</h3> 
+                            <h3>Le prix: {this.state.cost} Vnđ</h3> 
                             <button onClick={this.submitPayer}>Payer</button>
                         </div>
                     </div>)

@@ -50,7 +50,7 @@ class User(models.Model):
     stationArrive = models.CharField(max_length=120, default="")
     tempsDepart = models.CharField(max_length=120, default="")
     isGiveBack = models.CharField(max_length=120, default="")
-
+    cost = models.IntegerField(default=0)
     rewardList = models.ManyToManyField(Award)
 
     def __str__(self):

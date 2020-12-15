@@ -30,6 +30,15 @@ def getDateTimeNow():
     now = datetime.now()
     return now.strftime("%d/%m/%Y %H:%M:%S")
 
+def CalculateMoney(timeDepart, timeArrive):
+    time = datetime.strptime(timeArrive,
+                             "%d/%m/%Y %H:%M:%S") - datetime.strptime(timeDepart,
+                                                                      "%d/%m/%Y %H:%M:%S")
+    if (int(time.total_seconds()) < 3600):
+        return 10000 + int(time.total_seconds()) / 3600 * 10000
+    else:
+        return 8000 + int(time.total_seconds()) / 3600 * 8000
+
 @api_view(['GET', 'POST'])
 def LouerTransport(request):
     user_name = request.data["username"]
@@ -66,10 +75,12 @@ def RevenirTransport(request):
     rent_detail = Rent_Detail.objects.create(user = user,
                                              stationDepart=user.stationDepart,
                                              stationArrive=stationArrive,
-                                             cost=10,
+                                             cost=CalculateMoney(user.tempsDepart,
+                                                                 getDateTimeNow()),
                                              timeDepart=user.tempsDepart,
                                              timeArrive=getDateTimeNow())
     rent_detail.save()
+    cost = rent_detail.cost
     transport = user.transportLouer
     if (transport[0] == 'B'):
         bike = Bike.objects.get(ID_Bike=transport)
@@ -91,6 +102,7 @@ def RevenirTransport(request):
     user.stationDepart = ''
     user.tempsDepart = ''
     user.isGiveBack = 'Y'
+    user.cost = cost
     user.save()
     users = UserSerializer(user)
     return JsonResponse(users.data)
@@ -101,6 +113,7 @@ def PayerTransport(request):
     user = User.objects.get(username=user_name)
     user.status = not(user.status)
     user.isGiveBack = ''
+    user.cost = 0
     user.save()
     users = UserSerializer(user)
     return JsonResponse(users.data)
