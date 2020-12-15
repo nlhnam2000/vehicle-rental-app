@@ -20,6 +20,12 @@ class Station(models.Model):
     def __str__(self):
         return self.name_Station
 
+class Award(models.Model):
+    name_Award = models.CharField(max_length=120)
+    value = models.FloatField()
+    point = models.IntegerField()
+    def __str__(self):
+        return self.name_Award
 class User(models.Model):
     first_name = models.CharField(
         max_length=120, blank=False, default="Votre nom")
@@ -38,7 +44,7 @@ class User(models.Model):
     stationDepart = models.CharField(max_length=120 ,default="")
     stationArrive = models.CharField(max_length=120, default="")
     tempsDepart = models.CharField(max_length=120, default="")
-
+    rewardList = models.ManyToManyField(Award)
     def __str__(self):
         return self.username
 
@@ -79,3 +85,4 @@ class Rent_Detail(models.Model):
     stationArrive = models.CharField(max_length=120, default="")
     cost = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='history')
+
