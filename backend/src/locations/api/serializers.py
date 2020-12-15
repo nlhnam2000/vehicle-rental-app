@@ -8,34 +8,41 @@ from locations.models import ElecBike
 from locations.models import ElecMoto
 from locations.models import Rent_Detail
 
+
 class LocationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Location
         fields = ('name', 'longitude', 'latitude')
 
+
 class BikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bike
-        fields = ('ID_Bike','Available')
+        fields = ('ID_Bike', 'Available')
+
 
 class ElecBikeSerializer(serializers.ModelSerializer):
     class Meta:
         model = ElecBike
-        fields = ('ID_EBike','Available')
+        fields = ('ID_EBike', 'Available')
+
 
 class ElecMotoSerializer(serializers.ModelSerializer):
     class Meta:
         model = ElecMoto
-        fields = ('ID_EMoto','Available')
+        fields = ('ID_EMoto', 'Available')
+
 
 class StationSerializer(serializers.ModelSerializer):
     listBike = BikeSerializer(many=True)
     listElecBike = ElecBikeSerializer(many=True)
     listElecMoto = ElecMotoSerializer(many=True)
+
     class Meta:
         model = Station
         fields = ('name_Station', 'latitude',
                   'longitude', 'address', 'listBike', 'listElecBike', 'listElecMoto')
+
 
 class RentDetailSerializer(serializers.ModelSerializer):
     class Meta:
@@ -44,8 +51,10 @@ class RentDetailSerializer(serializers.ModelSerializer):
                   'stationDepart', 'stationArrive',
                   'cost')
 
+
 class UserSerializer(serializers.ModelSerializer):
-    history = RentDetailSerializer(many=True)
+    history = RentDetailSerializer(many=True, read_only=True)
+
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username',
