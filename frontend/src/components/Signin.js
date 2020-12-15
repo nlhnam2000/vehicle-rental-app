@@ -28,10 +28,11 @@ class SignIn extends React.Component {
         this.setState({ password: event.target.value });
     }
 
-    handleLogin = (event) => {
+    handleLogin = event => {
         event.preventDefault();
         this.props.onAuth(this.state.username, this.state.password);
-        this.props.history.push('/home');
+        // this.props.history.push('/home');
+        console.log(this.props.error);
     }
 
     render() {
@@ -39,11 +40,11 @@ class SignIn extends React.Component {
             <div className="signin-section">
                 <div className="container-fluid">
                     <div className="background-img">
-                        <img src={bg} />
+                        <img src={bg} alt="" />
                     </div>
                     <div className="signin-content">
                         <form className="form-group" onSubmit={this.handleLogin}>
-                            <img src={avatar} className="avatar" />
+                            <img src={avatar} alt="" className="avatar" />
                             <h2 className="title text-uppercase text-center" style={{ color: "black", marginBottom: '20px' }}>Se connecter à votre compte</h2>
                             <div className="input-div username">
                                 <div className="icon">
@@ -82,7 +83,8 @@ class SignIn extends React.Component {
 const mapStateToProps = (state) => {
     return {
         loading: state.loading,
-        token: state.token
+        token: state.token,
+        error: state.error
     }
 }
 
@@ -92,4 +94,5 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn); 
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+

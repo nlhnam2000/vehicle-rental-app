@@ -57,6 +57,7 @@ export const authLogin = (username, password) => {
                 dispatch(checkAuthTimeout(3600));
             })
             .catch(error => {
+                alert("Username ou mot de pass n'est pas correcte !");
                 dispatch(authFail(error));
                 console.log(error);
             })

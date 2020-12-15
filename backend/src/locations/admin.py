@@ -27,6 +27,9 @@ class EMotoAdmin(admin.ModelAdmin):
     list_display = ['ID_EMoto', 'Belong_Station']
 admin.site.register(ElecMoto, EMotoAdmin)
 
+from .models import Award
+admin.site.register(Award)
+
 
 
 

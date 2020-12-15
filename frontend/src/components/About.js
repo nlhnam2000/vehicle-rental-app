@@ -14,7 +14,7 @@ class About extends React.Component {
     render(){
         return (
             <>
-            <h1 className="about-title-1">ABOUT US</h1>
+            <h1 className="about-title-1">À PROPOS DE NOUS</h1>
             <div className="about-item">
                 <div className="about-detail-1">
                     <div className="about-img1">

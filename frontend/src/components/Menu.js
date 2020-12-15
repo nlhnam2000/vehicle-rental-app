@@ -20,11 +20,17 @@ class Menu extends React.Component {
                         </button>
                         <div className="collapse navbar-collapse" id="navbarResponsive">
                             <ul className="navbar-nav m-auto">
+                                {
+                                    this.props.isAuthenticated ?
+                                        <li className="nav-item">
+                                            <Link to={'/home'} className="nav-link active">Map</Link>
+                                        </li>
+                                        :
+                                        <div></div>
+                                }
+
                                 <li className="nav-item">
-                                    <Link to={'/home'} className="nav-link active">Map</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link to={'/'} className="nav-link">Award</Link>
+                                    <Link to={'/award'} className="nav-link">Award</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link to={'/about'} className="nav-link">About Us</Link>
