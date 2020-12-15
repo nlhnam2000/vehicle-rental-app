@@ -45,7 +45,7 @@ class RentDetailSerializer(serializers.ModelSerializer):
                   'cost')
 
 class UserSerializer(serializers.ModelSerializer):
-    history = RentDetailSerializer(many=True)
+    history = RentDetailSerializer(many=True, read_only=True)
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username',
