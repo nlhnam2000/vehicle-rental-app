@@ -3,6 +3,8 @@ import '../App.css'
 import axios from 'axios'
 import Select from 'react-select'
 
+var promoClassname = ['promotion']
+
 class Louer extends React.Component {
     constructor(props) {
         super(props)
@@ -45,6 +47,7 @@ class Louer extends React.Component {
     componentDidMount() {
         this.LoadStatusUser()
         this.LoadStation()
+        this.isRewardAvailable(); // check user's point to use reward
     }
     getStation(selectedStation) {
         this.setState({ selectedStation, isBikeSelected: false, isEBSelected: false, isEMSelected: false })
@@ -90,15 +93,18 @@ class Louer extends React.Component {
                 break;
             }
         }
-        var optionsBike = listB.filter(item => {return item.Available}).map(
-                item => { return ({ label: item.ID_Bike, value: item.ID_Bike, name: 'bike' })
-        })
-        var optionsEBike = listEB.filter(item => {return item.Available}).map(
-                item => { return ({ label: item.ID_EBike, value: item.ID_EBike, name: 'ebike' })
-        })
-        var optionsEMoto = listEM.filter(item => {return item.Available}).map(
-                item => { return ({ label: item.ID_EMoto, value: item.ID_EMoto, name: 'emoto' })
-        })
+        var optionsBike = listB.filter(item => { return item.Available }).map(
+            item => {
+                return ({ label: item.ID_Bike, value: item.ID_Bike, name: 'bike' })
+            })
+        var optionsEBike = listEB.filter(item => { return item.Available }).map(
+            item => {
+                return ({ label: item.ID_EBike, value: item.ID_EBike, name: 'ebike' })
+            })
+        var optionsEMoto = listEM.filter(item => { return item.Available }).map(
+            item => {
+                return ({ label: item.ID_EMoto, value: item.ID_EMoto, name: 'emoto' })
+            })
         return (<>
             <Select className='react-select-container'
                 ref={this.check}
@@ -133,7 +139,7 @@ class Louer extends React.Component {
     submitLouer() {
         var username = localStorage.getItem('username')
         axios.post('http://localhost:8000/locations/Louer', { username: username, transport: this.state.selectedTransport, selectedStation: this.state.selectedStation.value })
-            .then(res => { this.setState({ statusUser: res.data.status, isGiveBack: null}) })
+            .then(res => { this.setState({ statusUser: res.data.status, isGiveBack: null }) })
             .catch(e => (console.log(e)))
     }
     submitRevenir() {
@@ -142,16 +148,20 @@ class Louer extends React.Component {
         }
         else {
             var username = localStorage.getItem('username')
-            axios.post('http://localhost:8000/locations/Revenir', { username: username, stationArrive: this.state.selectedArriveStation.value})
+            axios.post('http://localhost:8000/locations/Revenir', { username: username, stationArrive: this.state.selectedArriveStation.value })
                 .then(res => this.setState({ isGiveBack: res.data.isGiveBack, cost: res.data.cost }))
                 .catch(e => console.log(e))
         }
     }
     submitPayer() {
         var username = localStorage.getItem('username')
-        axios.post('http://localhost:8000/locations/Payer', { username: username})
-            .then(res => { this.setState({ statusUser: res.data.status, isGiveBack: res.data.isGiveBack, cost: res.data.cost, 
-                                           isBikeSelected: false, isEBSelected: false, isEMSelected: false }) })
+        axios.post('http://localhost:8000/locations/Payer', { username: username })
+            .then(res => {
+                this.setState({
+                    statusUser: res.data.status, isGiveBack: res.data.isGiveBack, cost: res.data.cost,
+                    isBikeSelected: false, isEBSelected: false, isEMSelected: false
+                })
+            })
             .catch(e => (console.log(e)))
     }
     getArriveStation(selectedArriveStation) {
@@ -170,6 +180,35 @@ class Louer extends React.Component {
             classNamePrefix='react-select'
             onChange={this.getArriveStation}
         />)
+    }
+
+    isRewardAvailable = () => {
+        axios.get(`http://localhost:8000/api/users/${localStorage.getItem('username')}/`)
+            .then(res => {
+                if (res.data.pointReward < 50) {
+                    promoClassname.push('noReward')
+                }
+                else {
+                    promoClassname.pop();
+                }
+            })
+            .catch(err => console.log(err))
+    }
+
+    submitPromotion = (event) => {
+        // console.log(event.target.innerHTML);
+        var username = localStorage.getItem('username');
+        axios.post('http://localhost:8000/locations/Reward', {
+            username: username,
+            name_Award: event.target.innerHTML
+        })
+            .then(res => {
+                this.setState({
+                    cost: res.data.cost
+                })
+                // console.log(res.data);
+            })
+            .catch(err => console.log(err))
     }
     render() {
         console.log(this.state.statusUser)
@@ -232,9 +271,27 @@ class Louer extends React.Component {
                             <h3>Payer, s'il vous plait</h3>
                         </div>
                         <div className="content-louer">
-                            <h3>Le prix: {this.state.cost} Vnđ</h3> 
+                            <h3>Le prix: {this.state.cost} Vnđ</h3>
                             <button onClick={this.submitPayer}>Payer</button>
+                            <div className={promoClassname.join(' ')}>
+                                <button className="btn btn-success " data-toggle="dropdown">
+                                    Promotion
+                                </button>
+                                <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"></button>
+                                <div className="dropdown-menu">
+                                    <div className="dropdown-item" onClick={this.submitPromotion.bind(this)}>
+                                        30%
+                                    </div>
+                                    <div className="dropdown-item" onClick={this.submitPromotion.bind(this)}>
+                                        50%
+                                    </div>
+                                    <div className="dropdown-item" onClick={this.submitPromotion.bind(this)}>
+                                        50%
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
                     </div>)
                 }
             }

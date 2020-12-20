@@ -6,9 +6,11 @@ from django.http import JsonResponse
 from geopy.distance import geodesic
 from rest_framework.decorators import api_view
 from locations.api.serializers import UserSerializer
-from .models import Station, User, Bike, ElecBike, ElecMoto, Rent_Detail
+from .models import Station, User, Bike, ElecBike, ElecMoto, Rent_Detail, Award
 
 # Create your views here.
+
+
 def TrouverPosition(request):
     longitude = request.GET.get('longitude', '')
     latitude = request.GET.get('latitude', '')
@@ -26,9 +28,11 @@ def TrouverPosition(request):
     result1 = {'result': result['fields'], 'distance': Min}
     return JsonResponse(result1)
 
+
 def getDateTimeNow():
     now = datetime.now()
     return now.strftime("%d/%m/%Y %H:%M:%S")
+
 
 def CalculateMoney(timeDepart, timeArrive):
     time = datetime.strptime(timeArrive,
@@ -38,6 +42,21 @@ def CalculateMoney(timeDepart, timeArrive):
         return 10000 + int(time.total_seconds()) / 3600 * 10000
     else:
         return 8000 + int(time.total_seconds()) / 3600 * 8000
+
+
+@api_view(['GET', 'POST'])
+def useVoucher(request):
+    user_name = request.data["username"]
+    award = Award.objects.get(name_Award=request.data['name_Award'])
+    user = User.objects.get(username=user_name)
+    user.status = not(user.status)
+    promoCost = award.value
+    user.cost = user.cost - user.cost * promoCost
+    user.pointReward = user.pointReward - award.point
+    user.save()
+    users = UserSerializer(user)
+    return JsonResponse(users.data)
+
 
 @api_view(['GET', 'POST'])
 def LouerTransport(request):
@@ -67,12 +86,13 @@ def LouerTransport(request):
     users = UserSerializer(user)
     return JsonResponse(users.data)
 
+
 @api_view(['GET', 'POST'])
 def RevenirTransport(request):
     user_name = request.data["username"]
     stationArrive = request.data["stationArrive"]
     user = User.objects.get(username=user_name)
-    rent_detail = Rent_Detail.objects.create(user = user,
+    rent_detail = Rent_Detail.objects.create(user=user,
                                              stationDepart=user.stationDepart,
                                              stationArrive=stationArrive,
                                              cost=CalculateMoney(user.tempsDepart,
@@ -91,12 +111,14 @@ def RevenirTransport(request):
         if (transport[0:2] == 'EB'):
             ebike = ElecBike.objects.get(ID_EBike=transport)
             ebike.Available = True
-            ebike.Belong_Station = Station.objects.get(name_Station=stationArrive)
+            ebike.Belong_Station = Station.objects.get(
+                name_Station=stationArrive)
             ebike.save()
         else:
             emoto = ElecMoto.objects.get(ID_EMoto=transport)
             emoto.Available = True
-            emoto.Belong_Station = Station.objects.get(name_Station=stationArrive)
+            emoto.Belong_Station = Station.objects.get(
+                name_Station=stationArrive)
             emoto.save()
     user.transportLouer = ''
     user.stationDepart = ''
@@ -106,6 +128,7 @@ def RevenirTransport(request):
     user.save()
     users = UserSerializer(user)
     return JsonResponse(users.data)
+
 
 @api_view(['GET', 'POST'])
 def PayerTransport(request):
@@ -117,4 +140,3 @@ def PayerTransport(request):
     user.save()
     users = UserSerializer(user)
     return JsonResponse(users.data)
-    

@@ -31,8 +31,8 @@ class SignIn extends React.Component {
     handleLogin = event => {
         event.preventDefault();
         this.props.onAuth(this.state.username, this.state.password);
-        // this.props.history.push('/home');
-        console.log(this.props.error);
+        this.props.history.push('/home');
+        // console.log(this.props.error);
     }
 
     render() {

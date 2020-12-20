@@ -20,22 +20,18 @@ export default class Info extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8000/api/users/')
+        axios.get(`http://localhost:8000/api/users/${localStorage.getItem('username')}`)
             .then(res => {
-                for (var i = 0; i < res.data.length; i++) {
-                    if (res.data[i].username === localStorage.getItem('username')) {
-                        this.setState({
-                            username: res.data[i].username,
-                            firstname: res.data[i].first_name,
-                            lastname: res.data[i].last_name,
-                            email: res.data[i].email,
-                            cmnd: res.data[i].cmnd,
-                            point: res.data[i].pointReward,
-                            money: res.data[i].money,
-                            history: res.data[i].history
-                        })
-                    }
-                }
+                this.setState({
+                    username: res.data.username,
+                    firstname: res.data.first_name,
+                    lastname: res.data.last_name,
+                    email: res.data.email,
+                    cmnd: res.data.cmnd,
+                    point: res.data.pointReward,
+                    money: res.data.money,
+                    // history: res.data.history
+                })
                 // console.log(this.state);
                 // console.log(this.state.username);
             })

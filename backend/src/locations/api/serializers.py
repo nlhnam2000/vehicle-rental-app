@@ -6,7 +6,7 @@ from locations.models import Bike
 from locations.models import User
 from locations.models import ElecBike
 from locations.models import ElecMoto
-from locations.models import Rent_Detail
+from locations.models import Rent_Detail, Award
 
 
 class LocationSerializer(serializers.ModelSerializer):
@@ -54,9 +54,16 @@ class RentDetailSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     history = RentDetailSerializer(many=True, read_only=True)
+
     class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username',
                   'email', 'cmnd', 'money', 'history',
                   'pointReward', 'status', 'transportLouer',
-                  'stationDepart','tempsDepart', "isGiveBack", "cost")
+                  'stationDepart', 'tempsDepart', "isGiveBack", "cost")
+
+
+class AwardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Award
+        fields = ('name_Award', 'value', 'point')

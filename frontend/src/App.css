@@ -908,3 +908,7 @@ input[type="submit"] {
   margin-right: 0;
   font-size: 13pt;
 }
+
+.noReward {
+  display: none;
+}
