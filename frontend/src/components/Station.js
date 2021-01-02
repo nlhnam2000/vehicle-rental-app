@@ -28,11 +28,12 @@ class Station extends React.Component {
             return (<>
                 <div key={i} className="station-name">
                     <div className="image-station"><img className="Icon-bicycle" src={bicycle} alt="bicycle" /></div>
-                    <div className="name-station"><b>Nom</b>: {item.name_Station} <br />
+                    <div className="name-station" style={{ paddingRight: '5px' }}>
+                        <b>Nom</b>: {item.name_Station} <br />
                         <b>Address</b>: {item.address} <br />
-                        <b>Available</b>: {item.listBike.filter(i => {return i.Available === true}).length 
-                                        + item.listElecBike.filter(i => {return i.Available === true}).length
-                                        + item.listElecMoto.filter(i => {return i.Available === true}).length}
+                        <b>Available</b>: {item.listBike.filter(i => { return i.Available === true }).length
+                            + item.listElecBike.filter(i => { return i.Available === true }).length
+                            + item.listElecMoto.filter(i => { return i.Available === true }).length}
                     </div>
                 </div>
                 <hr />
@@ -51,9 +52,9 @@ class Station extends React.Component {
                     <div className="image-station"><img className="Icon-bicycle" src={bicycle} alt="bicycle" /></div>
                     <div className="name-station"><b>Nom</b>: {item.name_Station} <br />
                         <b>Address</b>: {item.address} <br />
-                        <b>Available</b>: {item.listBike.filter(i => {return i.Available === true}).length 
-                                        + item.listElecBike.filter(i => {return i.Available === true}).length
-                                        + item.listElecMoto.filter(i => {return i.Available === true}).length}
+                        <b>Available</b>: {item.listBike.filter(i => { return i.Available === true }).length
+                            + item.listElecBike.filter(i => { return i.Available === true }).length
+                            + item.listElecMoto.filter(i => { return i.Available === true }).length}
                     </div>
                 </div>
                 <hr />
@@ -67,7 +68,7 @@ class Station extends React.Component {
             var station = el.name_Station.toLowerCase()
             return station.indexOf(string_station) !== -1
         })
-        this.setState({ value: e.target.value, listFindStation: result})
+        this.setState({ value: e.target.value, listFindStation: result })
     }
 
     render() {
