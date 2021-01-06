@@ -1,11 +1,11 @@
 import React from 'react';
-import {Popup} from 'react-leaflet';
+import { Popup } from 'react-leaflet';
 
 const MarkerPopup = (props) => {
-  const { name } = props.data;
-  console.log(name);
+  const name = props.data;
+  // console.log(name);
 
-  return  (<Popup>
+  return (<Popup>
     <div className='poup-text'>{name}</div>
   </Popup>);
 };

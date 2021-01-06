@@ -6,6 +6,7 @@ import MapView from './components/MapView';
 import Signin from './components/Signin';
 import SignUp from './components/Signup';
 import Info from './components/Info';
+import AddMoney from './components/AddMoney';
 import About from './components/About';
 import Award from './components/Award';
 import { connect } from 'react-redux';
@@ -32,8 +33,9 @@ class App extends React.Component {
             <Route path='/signin' exact component={Signin} />
             <Route path='/signup' exact component={SignUp} />
             <Route path='/user/info' exact component={Info} />
-            <Route path='/about' exact component={About}/>
-            <Route path='/award' exact component={Award}/>
+            <Route path='/user/addmoney' exact component={AddMoney} />
+            <Route path='/about' exact component={About} />
+            <Route path='/award' exact component={Award} />
           </Switch>
         </div>
       </Router>

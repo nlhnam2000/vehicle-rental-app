@@ -1,5 +1,6 @@
 import L from 'leaflet';
-import icon from '../images/venue_location_icon.svg'
+// import icon from '../images/venue_location_icon.svg'
+import icon from '../images/red_marker.png'
 export const VenueLocationIcon = new L.icon({
   iconUrl: icon,
   iconRetinaUrl: icon,

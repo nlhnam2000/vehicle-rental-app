@@ -1,38 +1,45 @@
 import sys
 import json
 from datetime import datetime
+from math import sin, asin, cos, sqrt, radians
 from django.core import serializers
 from django.http import JsonResponse
-from geopy.distance import geodesic
 from rest_framework.decorators import api_view
 from locations.api.serializers import UserSerializer
 from .models import Station, User, Bike, ElecBike, ElecMoto, Rent_Detail, Award
 
 # Create your views here.
 
+def Haversine(lat1, long1, lat2, long2):
+    R = 6372.8
+    dLat = radians(lat2 - lat1)
+    dLong = radians(long2 - long1)
+    lat1 = radians(lat1)
+    lat2 = radians(lat2)
+    a = sin(dLat/2)**2 + cos(lat1) * cos(lat2) * sin(dLong/2)**2
+    c = 2 * asin(sqrt(a))
+    return R * c
 
 def TrouverPosition(request):
-    longitude = request.GET.get('longitude', '')
-    latitude = request.GET.get('latitude', '')
-    position_Now = (latitude, longitude)
+    longitude = float(request.GET.get('longitude', ''))
+    latitude = float(request.GET.get('latitude', ''))
     serializers_stations = serializers.serialize('json', Station.objects.all())
     listStation = json.loads(serializers_stations)
     Min = sys.maxsize
     for station in listStation:
-        position_Station = (
-            station['fields']['latitude'], station['fields']['longitude'])
-        temp = geodesic(position_Now, position_Station).km
+        tempLat = station['fields']['latitude']
+        tempLong = station['fields']['longitude']
+        temp = Haversine(latitude, longitude, tempLat, tempLong)
         if(temp < Min):
             Min = temp
             result = station
-    result1 = {'result': result['fields'], 'distance': Min}
+    result1 = {'result': result['fields'], 'distance': round(Min, 3)}
     return JsonResponse(result1)
 
 
 def getDateTimeNow():
     now = datetime.now()
     return now.strftime("%d/%m/%Y %H:%M:%S")
-
 
 def CalculateMoney(timeDepart, timeArrive):
     time = datetime.strptime(timeArrive,
@@ -47,12 +54,16 @@ def CalculateMoney(timeDepart, timeArrive):
 @api_view(['GET', 'POST'])
 def useVoucher(request):
     user_name = request.data["username"]
-    award = Award.objects.get(name_Award=request.data['name_Award'])
+    reward = request.data['name_Award']
     user = User.objects.get(username=user_name)
-    user.status = not(user.status)
-    promoCost = award.value
-    user.cost = user.cost - user.cost * promoCost
-    user.pointReward = user.pointReward - award.point
+    if (reward != ''):
+        award = Award.objects.get(name_Award=reward)
+        promoCost = award.value
+        user.tempCost = user.cost - user.cost * promoCost
+        user.tempPoint = user.pointReward - award.point
+    else:
+        user.tempCost = user.cost
+        user.tempPoint = user.pointReward
     user.save()
     users = UserSerializer(user)
     return JsonResponse(users.data)
@@ -133,10 +144,23 @@ def RevenirTransport(request):
 @api_view(['GET', 'POST'])
 def PayerTransport(request):
     user_name = request.data["username"]
+    isUseVoucher = request.data["isUseVoucher"]
     user = User.objects.get(username=user_name)
+    rent_detail = Rent_Detail.objects.latest('id')
+    if (isUseVoucher):
+        user.pointReward = user.tempPoint
+        user.money -= user.tempCost
+        rent_detail.cost = user.tempCost
+    else:
+        user.money -= user.cost
+        rent_detail.cost = user.cost
+    rent_detail.save()
     user.status = not(user.status)
+    user.pointReward += 5
     user.isGiveBack = ''
     user.cost = 0
+    user.tempCost = 0
+    user.tempPoint = 0
     user.save()
     users = UserSerializer(user)
     return JsonResponse(users.data)

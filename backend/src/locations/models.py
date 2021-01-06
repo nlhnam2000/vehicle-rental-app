@@ -52,6 +52,8 @@ class User(models.Model):
     isGiveBack = models.CharField(max_length=120, default="")
     cost = models.IntegerField(default=0)
     rewardList = models.ManyToManyField(Award)
+    tempCost = models.IntegerField(default=0)
+    tempPoint = models.IntegerField(default=0)
 
     def __str__(self):
         return self.username

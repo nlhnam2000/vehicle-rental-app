@@ -48,7 +48,7 @@ class Menu extends React.Component {
 
                             {
                                 this.props.isAuthenticated ?
-                                    <div className="navbar-nav ml-auto">
+                                    <div className="navbar-nav ml-auto" style={{ marginRight: '20px' }}>
                                         <div className="btn-group">
                                             <button className="btn btn-success " data-toggle="dropdown">
                                                 {localStorage.getItem('username')}
@@ -60,6 +60,9 @@ class Menu extends React.Component {
                                                 </Link>
                                                 <Link onClick={this.props.logout} className="dropdown-item" to={'/'}>
                                                     Logout
+                                                </Link>
+                                                <Link className="add-money dropdown-item" to={'/user/addmoney/'}>
+                                                    Recharger
                                                 </Link>
                                             </div>
                                         </div>
