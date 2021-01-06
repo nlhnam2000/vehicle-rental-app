@@ -2,8 +2,8 @@
     "venues": [
         {
             "geometry": [
-                1,
-                2
+                null,
+                null
             ]
         }
     ]
