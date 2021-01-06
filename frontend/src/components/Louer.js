@@ -39,8 +39,8 @@ class Louer extends React.Component {
         this.submitPayer = this.submitPayer.bind(this)
     }
     optionsPromo = [{ label: '20%', value: 20 },
-    { label: '30%', value: 30 },
-    { label: '50%', value: 50 }]
+                    { label: '30%', value: 30 },
+                    { label: '50%', value: 50 }]
     LoadStation() {
         axios.get('http://localhost:8000/api/stations')
             .then(res => { this.setState({ listStation: res.data }) })
@@ -168,15 +168,16 @@ class Louer extends React.Component {
     }
     submitPayer() {
         if (this.state.money >= this.state.cost) {
-        var username = localStorage.getItem('username')
-        axios.post('http://localhost:8000/locations/Payer', { username: username, isUseVoucher: this.state.isUseVoucher})
-            .then(res => {
-                this.setState({
-                    statusUser: res.data.status, isGiveBack: res.data.isGiveBack, cost: res.data.cost,
-                    isBikeSelected: false, isEBSelected: false, isEMSelected: false, isUseVoucher: false, money: res.data.money
+            var username = localStorage.getItem('username')
+            axios.post('http://localhost:8000/locations/Payer', { username: username, isUseVoucher: this.state.isUseVoucher })
+                .then(res => {
+                    this.setState({
+                        statusUser: res.data.status, isGiveBack: res.data.isGiveBack, cost: res.data.cost,
+                        isBikeSelected: false, isEBSelected: false, isEMSelected: false, isUseVoucher: false, money: res.data.money,
+                        point: res.data.pointReward
+                    })
                 })
-            })
-            .catch(e => (console.log(e)))
+                .catch(e => (console.log(e)))
         }
         else
             alert('Vous n\'avez pas assez d\'argent! Rechargez, s\'il vous plait')
@@ -214,7 +215,7 @@ class Louer extends React.Component {
 
     submitPromotion = (event) => {
         var username = localStorage.getItem('username');
-        this.setState( {isUseVoucher: true} )
+        this.setState({ isUseVoucher: true })
         if (event) {
             axios.post('http://localhost:8000/locations/Reward', {
                 username: username,

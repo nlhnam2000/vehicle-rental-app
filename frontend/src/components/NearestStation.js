@@ -34,10 +34,8 @@ class NearestStation extends React.Component {
         console.log(e.target.value)
         this.searchBox.current.value = e.target.value
         let temp = this.searchBox.current.value.split('+')
-        console.log(temp)
         this.setState({ latitude: temp[0] })
         this.setState({ longitude: temp[1] })
-        console.log(this.state.longitude)
     }
     findNearestStation() {
         if  (this.state.latitude && this.state.longitude) {
