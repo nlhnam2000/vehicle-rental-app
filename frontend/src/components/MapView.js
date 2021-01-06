@@ -4,6 +4,8 @@ import 'leaflet/dist/leaflet.css';
 import data from '../assets/data';
 import Markers from './VenueMarkers';
 import Sidebar from './Sidebar'
+import user from '../assets/user'
+import UserMarker from './UserMarker'
 
 class MapView extends Component {
   constructor(props) {
@@ -19,21 +21,21 @@ class MapView extends Component {
 
   // 10.76652912005816, 106.69510414232758
 
-  // UNSAFE_componentWillMount() {
-  //   navigator.geolocation.getCurrentPosition(position => {
-  //     let locationCopy = JSON.parse(JSON.stringify(this.state.currentLocation));
-  //     locationCopy.lat = position.coords.latitude;
-  //     locationCopy.lng = position.coords.longitude;
-  //     this.setState({
-  //       currentLocation: locationCopy
-  //     })
-  //     // console.log(position.coords.latitude + ' ' + position.coords.longitude);
-  //     console.log(this.state.currentLocation.lat + ' ' + this.state.currentLocation.lng);
-  //   })
-  // }
+  componentDidMount() {
+    // const marker = user.venues.map(user => {
+    //   user.geometry[0] = 2;
+    //   user.geometry[1] = 1;
+    //   console.log(user);
+    // })
+    this.getUserPosition();
+    const marker = user.venues.map(user => {
+      user.geometry[0] = this.state.currentLocation.lat;
+      user.geometry[1] = this.state.currentLocation.lng;
+      console.log(user);
+    })
+  }
 
-  render() {
-
+  getUserPosition() {
     navigator.geolocation.getCurrentPosition(position => {
       let locationCopy = JSON.parse(JSON.stringify(this.state.currentLocation));
       locationCopy.lat = position.coords.latitude;
@@ -44,19 +46,22 @@ class MapView extends Component {
       // console.log(position.coords.latitude + ' ' + position.coords.longitude);
       console.log('Location: ' + this.state.currentLocation.lat + ' ' + this.state.currentLocation.lng);
     })
+  }
 
-    const { currentLocation, zoom } = this.state;
+  render() {
+    // const { currentLocation, zoom } = this.state;
 
     return (
       <div className="mapView">
         <Sidebar />
         <div className="mapID">
-          <MapContainer center={currentLocation} zoom={zoom}>
+          <MapContainer center={this.state.currentLocation} zoom={this.state.zoom}>
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
             />
             <Markers venues={data.venues} />
+            <UserMarker venues={user.venues} />
           </MapContainer>
         </div>
       </div>
