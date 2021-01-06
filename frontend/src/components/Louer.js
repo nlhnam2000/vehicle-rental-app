@@ -204,7 +204,7 @@ class Louer extends React.Component {
         })
             .then(res => {
                 this.setState({
-                    cost: res.data.cost
+                    cost: res.data.cost,
                 })
                 // console.log(res.data);
             })
