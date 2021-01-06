@@ -30,7 +30,7 @@ export default class Info extends React.Component {
                     cmnd: res.data.cmnd,
                     point: res.data.pointReward,
                     money: res.data.money,
-                    // history: res.data.history
+                    //history: res.data.history
                 })
                 // console.log(this.state);
                 // console.log(this.state.username);
