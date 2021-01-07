@@ -1,7 +1,10 @@
 import React from 'react';
 import '../App.css';
 import img1 from '../images/img2.png';
-
+import imgKhoa from '../images/KhoaDo.jpg'
+import imgKhang from '../images/Khang.jpg'
+import imgNam from '../images/Nam.jpg'
+import func from '../images/Functionality.jpg'
 // const grid = {
 //     display: 'flex', 
 //     flexDirection: 'column'
@@ -71,7 +74,7 @@ class Home extends React.Component {
                         </div>
                     </div>
                     <div class="center-img">
-                        <img src={img1} alt="" ></img>
+                        <img src={func} alt="" ></img>
                     </div>
                     <div class="function2">
                         <div className="func2-detail top">
@@ -92,19 +95,20 @@ class Home extends React.Component {
                 <hr className="line"></hr>
                 <div className="home-item3">
                     <div className="info1">
-                        Xuất phát từ ứng dụng phi lợi nhuận, BusMap đặt mục tiêu mang đến giá
-                        trị thiết thực nhằm nâng cao chất lượng đời sống người dân. 07 năm qua
-                        là chặng đường phát triển bởi tinh thần đổi mới sáng tạo, trách nhiệm
-                        đối với xã hội cùng ý chí kiên định “Vì một tương lai thông minh hơn”.
+                        Je suis Khoa KD Transport a été créé pour encourager les gens à utiliser
+                        des matériaux propres pour aider à protéger l'environnement.
+                        Avec plus de 50 gares routières, voyager en véhicules
+                        KD Transport est à la fois pratique et peut contribuer à la
+                        protection de l'environnement.
                     </div>
                     <div className="pic1">
-                        <img src={img1} alt=""></img>
+                        <img src={imgKhoa} alt=""></img>
                     </div>
                     <div className="pic2">
-                        <img src={img1} alt=""></img>
+                        <img src={imgNam} alt=""></img>
                     </div>
                     <div className="info2">
-                        Je suis Khoa KD Transport a été créé pour encourager les gens à utiliser
+                        Je suis Nam KD Transport a été créé pour encourager les gens à utiliser
                         des matériaux propres pour aider à protéger l'environnement.
                         Avec plus de 50 gares routières, voyager en véhicules
                         KD Transport est à la fois pratique et peut contribuer à la
@@ -118,7 +122,7 @@ class Home extends React.Component {
                         protection de l'environnement.
                     </div>
                     <div className="pic3">
-                        <img src={img1} alt=""></img>
+                        <img src={imgKhang} alt=""></img>
                     </div>
                 </div>
             </>

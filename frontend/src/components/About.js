@@ -1,6 +1,7 @@
 import React from 'react';
 import '../App.css';
 import about_us from '../images/about_us.jpg'
+import about_us2 from '../images/about_us_2.jpg'
 
 
 // const grid = {
@@ -23,11 +24,11 @@ class About extends React.Component {
                         <h2 className="about-title-2">Notre histoire</h2>
                         <hr className="about-line"></hr>
                         <div className="about-detail-text-1">
-                            Partant de la volonté de réduire les émissions des véhicules tels que les motos, KD Moyen est né avec la volonté d'aider les habitants de la ville à se déplacer facilement et rapidement grâce aux moyens de transport. Utilisez des ingrédients propres à un prix raisonnable
+                            Partant de la volonté de réduire les émissions des véhicules tels que les motos, KD Transport est né avec la volonté d'aider les habitants de la ville à se déplacer facilement et rapidement grâce aux Transports de transport. Utilisez des ingrédients propres à un prix raisonnable
                     </div>
 
                         <div className="about-detail-text-1">
-                            Avec l'utilisation de KD Moyen, les gens peuvent non seulement contribuer à une forte réduction des émissions, mais peuvent également contribuer à améliorer la santé de chacun. De plus, chaque citoyen utilisant KD Moyen contribuera au fonds "Protection de l'environnement KD Moyen". A chaque utilisation, 10% de la location de voiture va à un fonds qui peut contribuer à protéger notre environnement.
+                            Avec l'utilisation de KD Transport, les gens peuvent non seulement contribuer à une forte réduction des émissions, mais peuvent également contribuer à améliorer la santé de chacun. De plus, chaque citoyen utilisant KD Transport contribuera au fonds "Protection de l'environnement KD Transport". A chaque utilisation, 10% de la location de voiture va à un fonds qui peut contribuer à protéger notre environnement.
                     </div>
                     </div>
                 </div>
@@ -36,7 +37,7 @@ class About extends React.Component {
                         <h2 className="about-title-3">Équipe de développeurs</h2>
                         <hr className="about-line2"></hr>
                         <div className="about-detail-text-2">
-                            L'application KD Moyen est développée à partir d'un groupe d'étudiants
+                            L'application KD Transport est développée à partir d'un groupe d'étudiants
                             de l'Université des Sciences Naturelles de Ho Chi Minh Ville avec le désir
                             d'aider les gens à comprendre la question de la protection de l'environnement.
                     </div>
@@ -48,7 +49,7 @@ class About extends React.Component {
                     </div>
                     <div className="about-detail-4">
                         <div className="about-img2">
-                            <img src={about_us} alt="" />
+                            <img src={about_us2} alt="" />
                         </div>
                     </div>
                 </div>
