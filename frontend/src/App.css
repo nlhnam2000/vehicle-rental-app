@@ -58,16 +58,17 @@ ul li.nav-link:hover {
   font-weight: bold;
   font-size: 30px;
   padding-left: 20px;
+  font-family: "Valera-Round";
 }
 
-.navbar > .navbar-branch > h3:hover {
+/* .navbar > .navbar-branch > h3:hover {
   background-color: black;
   border-radius: 5px;
   color: white !important;
   padding: 10px;
   outline: none;
   text-decoration: none;
-}
+} */
 
 .header-bar .navbar-branch {
   text-decoration: none;
@@ -94,9 +95,10 @@ ul li.nav-link:hover {
 
 .navbar li .nav-link {
   color: black !important;
-  font-size: 20px;
+  font-size: 25px;
   margin-left: 20px;
   margin-right: 20px;
+  font-family: "Valera-Round";
 }
 
 .navbar li .nav-link:hover {
@@ -118,6 +120,7 @@ ul li.nav-link:hover {
   display: flex;
   flex-wrap: wrap;
   background-color: #6acc00;
+  font-family: "Valera-Round";
 }
 
 .home-item img {
@@ -173,9 +176,12 @@ ul li.nav-link:hover {
   display: grid;
   grid-template-areas: 
   'right left';
+  font-family: "Valera-Round";
+  font-size: 20px;
 }
 .detail-text-info {
   max-width: 400px;
+  
 
 }
 .ads1, .ads2, .ads3 {
@@ -229,11 +235,12 @@ ul li.nav-link:hover {
 
 .titleAds {
   color: #6acc00;
+  font-weight: 700;
 }
 
 .detail-text-ads {
   max-width: 600px;
-  font-size: 14px;
+  font-size: 20px;
 }
 
 /* Function */
@@ -256,12 +263,19 @@ ul li.nav-link:hover {
   grid-area: title;
   color: #6acc00;
   margin-top: 100px;
+  font-family: "Valera-Round";
+  font-weight: 700;
 }
 .home-item2 {
   display: grid;
   grid-template-areas: 
   'title title title'
   'left center right';
+  font-family: "Valera-Round";
+  font-size: 20px;
+}
+.func1-detail-title {
+  font-weight: 700;
 }
 .center-img img {
   max-width: 500px;
@@ -307,6 +321,8 @@ ul li.nav-link:hover {
   margin-left: 100px;
   margin-right: 100px;
   margin-top: 50px;
+  font-family: "Valera-Round";
+  font-size: 20px;
 }
 
 .pic1 img, .pic2 img, .pic3 img {
@@ -376,6 +392,7 @@ form {
 .input-div {
   display: flex;
   margin-bottom: 20px;
+  font-family: "Valera-Round";
 }
 
 .input-div * {
@@ -423,7 +440,7 @@ input[type="submit"] {
   background-size: 200%;
   font-size: 1.2rem;
   color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Valera-Round";
   text-transform: uppercase;
   margin: 1rem 0;
   cursor: pointer;
@@ -453,7 +470,7 @@ input[type="submit"] {
   background-image: linear-gradient(315deg, #03e5b7 0%, #037ade 74%); background-size: 200%;
   font-size: 1.2rem;
   color: #fff;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Valera-Round";
   text-transform: uppercase;
   margin: 1rem 0;
   cursor: pointer;
@@ -494,6 +511,7 @@ input[type="submit"] {
   grid-template-columns: 33.3% 33.3% auto;
   font-weight: 500;
   color: grey;
+  font-family: "Valera-Round";
 }
 .content-sidebar{
   display: grid;
@@ -605,6 +623,7 @@ input[type="submit"] {
   .home-item-grid {
     display: flex;
     flex-direction: column;
+    
   }
 
   .home-item-grid img {
@@ -657,6 +676,7 @@ input[type="submit"] {
   flex-direction: column;
   align-items: center;
   margin: 12% auto;
+  font-family: "Valera-Round";
 }
 
 .user-info .avatar {
@@ -675,6 +695,7 @@ input[type="submit"] {
   flex-direction: column;
   align-items: center;
   margin: 30px auto;
+  font-family: "Valera-Round";
 }
 
 .info .area {
@@ -715,6 +736,8 @@ input[type="submit"] {
   grid-template-areas: 
   'about-detail-1 about-title-2'
   'about-detail-1 about-detail-2';
+  font-family: "Valera-Round";
+  font-size: 20px;
 }
 
 .about-detail-1 {
@@ -730,6 +753,8 @@ input[type="submit"] {
   margin-bottom: 50px;
   color: #6acc00;
   margin-left: 100px;
+  font-family: "Valera-Round";
+  font-weight: 700;
 }
 .about-title-2 {
   grid-area: about-title-2;
@@ -737,6 +762,7 @@ input[type="submit"] {
   height: fit-content;
   color: #6acc00;
   margin-left: 100px;
+  font-weight: 700;
 
 }
 .about-detail-text-1, .about-detail-text-2{
@@ -768,12 +794,16 @@ input[type="submit"] {
   grid-template-areas:
   'about-title-3 about-title-3'
   'about-detail-3 about-detail-4';
+  font-family: "Valera-Round";
+  font-size: 20px;
 }
 .about-title-3 {
   grid-area: about-title-3;
   max-width: 400px;
   height: fit-content;
   color: #6acc00;
+  font-weight: 700;
+  
 }
 
 .about-img2 img {
@@ -789,6 +819,8 @@ input[type="submit"] {
   grid-template-areas:
   'about-title-4 about-title-4 about-title-4'
   'about-detail-text-3 about-detail-text-4 about-detail-text-5';
+  font-family: "Valera-Round";
+  font-size: 20px;
 }
 
 .about-detail-text-3, .about-detail-text-4, .about-detail-text-5{
@@ -813,6 +845,7 @@ input[type="submit"] {
   max-width: 400px;
   height: fit-content;
   color: #6acc00;
+  font-weight: 700;
 }
 .about-sub-title {
   color: #6acc00;
@@ -830,6 +863,8 @@ input[type="submit"] {
   display: grid;
   grid-template-areas: 
   'award-img-1 award-detail-1';
+  font-family: "Valera-Round";
+  font-size: 20px;
 }
 .award-title-1 {
   grid-area: award-title-1;
@@ -837,6 +872,8 @@ input[type="submit"] {
   margin-bottom: 50px;
   color: #6acc00;
   margin-left: 100px;
+  font-family: "Valera-Round";
+  font-weight: 700;
 }
 .award-item img {
   max-height: 300px;
@@ -865,12 +902,15 @@ input[type="submit"] {
   'award-img1 award-promo-1'
   'award-img2 award-promo-2'
   'award-img3 award-promo-3';
+  font-family: "Valera-Round";
+  font-size: 20px;
 }
 .award-title-2 {
   grid-area: award-title-2;
   margin-top: 200px;
   margin-left: 200px;
   color: #6acc00;
+  font-family: "Valera-Round";
 }
 .award-line {
   max-width: 450px;
@@ -912,3 +952,4 @@ input[type="submit"] {
 .noReward {
   display: none;
 }
+

@@ -14,7 +14,7 @@ class Home extends React.Component {
 
                 <div className="home-item">
                     <div className="detail-text">
-                        <h1>KD MOYEN</h1>
+                        <h1>KD Transport</h1>
                         <div className="detail-text-info">
                             Le logiciel supporte tout le monde en
                         prenant le vélo et moto électrique </div>
@@ -38,7 +38,7 @@ class Home extends React.Component {
                     </div>
 
                     <div className="detail-ads">
-                        <h1 className="titleAds">Qu'est-ce que KD MOYEN?</h1>
+                        <h1 className="titleAds">Qu'est-ce que KD Transport?</h1>
                         <hr className="line-1"></hr>
                         <div class="detail-text-ads">
                             De nos jours, avec autant de voitures dans la ville
@@ -46,10 +46,10 @@ class Home extends React.Component {
                             l'utilisation de véhicules respectueux de l'environnement
                         est essentielle.</div>
                         <div class="detail-text-ads">
-                            KD Moyen a été créé pour encourager les gens à utiliser
+                            KD Transport a été créé pour encourager les gens à utiliser
                             des matériaux propres pour aider à protéger l'environnement.
                             Avec plus de 50 gares routières, voyager en véhicules
-                            KD Moyen est à la fois pratique et peut contribuer à la
+                            KD Transport est à la fois pratique et peut contribuer à la
                         protection de l'environnement. </div>
                     </div>
                 </div>
@@ -58,15 +58,15 @@ class Home extends React.Component {
                 <div className="home-item2">
                     <div class="function1">
                         <div className="func1-detail top">
-                            <h3>Trouvez une manière</h3>
+                            <h3 className="func1-detail-title">Trouvez une manière</h3>
                             <p>Expliquez aux utilisateurs les meilleures façons de passer entre 2 emplacements</p>
                         </div>
                         <div className="func1-detail">
-                            <h3>Meilleur calcul des coûts</h3>
+                            <h3 className="func1-detail-title">Meilleur calcul des coûts</h3>
                             <p>Le système calculera pour trouver la méthode la plus économique</p>
                         </div>
                         <div className="func1-detail">
-                            <h3>Rechercher des informations</h3>
+                            <h3 className="func1-detail-title">Rechercher des informations</h3>
                             <p>Rechercher des nombre de véhicules, type de véhicule sur chaque gare routière </p>
                         </div>
                     </div>
@@ -75,15 +75,15 @@ class Home extends React.Component {
                     </div>
                     <div class="function2">
                         <div className="func2-detail top">
-                            <h3>Afficher les temps d'attente</h3>
+                            <h3 className="func1-detail-title">Afficher les temps d'attente</h3>
                             <p>Calculez combien de temps il faut attendre pour louer une voiture</p>
                         </div>
                         <div className="func2-detail">
-                            <h3>Répondre aux commentaires</h3>
+                            <h3 className="func1-detail-title">Répondre aux commentaires</h3>
                             <p>Retour d'information fonctionnel sur la qualité des véhicules pour le centre d'opérations</p>
                         </div>
                         <div className="func2-detail">
-                            <h3>Trouvez un arrêt</h3>
+                            <h3 className="func1-detail-title">Trouvez un arrêt</h3>
                             <p>Rechercher l'arrêt proche actuel, affiché visuellement sur la carte</p>
                         </div>
                     </div>
@@ -104,17 +104,17 @@ class Home extends React.Component {
                         <img src={img1} alt=""></img>
                     </div>
                     <div className="info2">
-                        Je suis Khoa KD Moyen a été créé pour encourager les gens à utiliser
+                        Je suis Khoa KD Transport a été créé pour encourager les gens à utiliser
                         des matériaux propres pour aider à protéger l'environnement.
                         Avec plus de 50 gares routières, voyager en véhicules
-                        KD Moyen est à la fois pratique et peut contribuer à la
+                        KD Transport est à la fois pratique et peut contribuer à la
                         protection de l'environnement.
                     </div>
                     <div className="info3">
-                        Je suis Khang KD Moyen a été créé pour encourager les gens à utiliser
+                        Je suis Khang KD Transport a été créé pour encourager les gens à utiliser
                         des matériaux propres pour aider à protéger l'environnement.
                         Avec plus de 50 gares routières, voyager en véhicules
-                        KD Moyen est à la fois pratique et peut contribuer à la
+                        KD Transport est à la fois pratique et peut contribuer à la
                         protection de l'environnement.
                     </div>
                     <div className="pic3">

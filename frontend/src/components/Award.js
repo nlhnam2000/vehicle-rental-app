@@ -9,6 +9,7 @@ import promo50 from '../images/promo50.jpg'
 //     flexDirection: 'column'
 // }; 
 
+
 class Award extends React.Component {
     render() {
         return (
