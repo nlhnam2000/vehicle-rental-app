@@ -953,3 +953,7 @@ input[type="submit"] {
   display: none;
 }
 
+#myModal {
+  position: absolute;
+  top: 50%;
+}
