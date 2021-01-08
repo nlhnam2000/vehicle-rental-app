@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../App.css'
 import axios from 'axios'
 import Select from 'react-select'
@@ -167,6 +167,7 @@ class Louer extends React.Component {
         }
     }
     submitPayer() {
+        var t = this.state.cost
         if (this.state.money >= this.state.cost) {
             var username = localStorage.getItem('username')
             axios.post('http://localhost:8000/locations/Payer', { username: username, isUseVoucher: this.state.isUseVoucher })
@@ -176,6 +177,8 @@ class Louer extends React.Component {
                         isBikeSelected: false, isEBSelected: false, isEMSelected: false, isUseVoucher: false, money: res.data.money,
                         point: res.data.pointReward
                     })
+                    alert("Vous avez payé " + t + "đ pour cette voyage.\nIl vous en reste "
+                           + this.state.money + "đ dans votre portefeuille")
                 })
                 .catch(e => (console.log(e)))
         }
@@ -204,13 +207,8 @@ class Louer extends React.Component {
 
     isRewardAvailable = () => {
         axios.get(`http://localhost:8000/api/users/${localStorage.getItem('username')}/`)
-            .then(res => {
-                if (res.data.pointReward < 20) {
-                    promoClassname.push('noReward')
-                }
-                else {
-                    promoClassname.pop();
-                }
+            .then(() => {
+                promoClassname.pop();
             })
             .catch(err => console.log(err))
     }
@@ -250,7 +248,7 @@ class Louer extends React.Component {
                 if (!this.state.selectedStation) {
                     return (<div className="content-sidebar">
                         <div className="content-louer">
-                        Selecter le station pour louer
+                            Selecter le station pour louer
                         {this.renderStation()}
                         </div>
                     </div>)
@@ -258,7 +256,7 @@ class Louer extends React.Component {
                 if (this.state.selectedStation) {
                     return (<div className="content-sidebar">
                         <div className="content-louer">
-                        Selecter le station pour louer
+                            Selecter le station pour louer
                         {this.renderStation()}
                         </div>
                         <div className="content-louer">

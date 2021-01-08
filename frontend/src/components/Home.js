@@ -30,7 +30,7 @@ class Home extends React.Component {
                 <div className="home-item1">
                     <div className="ads">
                         <div className="ads1">
-                            le prix convient à tout le monde
+                            Le prix convient à tout le monde
                         </div>
                         <div className="ads2">
                             Interface conviviale, facile à utiliser

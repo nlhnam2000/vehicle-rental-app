@@ -41,14 +41,25 @@ def getDateTimeNow():
     now = datetime.now()
     return now.strftime("%d/%m/%Y %H:%M:%S")
 
-def CalculateMoney(timeDepart, timeArrive):
+def CalculateMoney(timeDepart, timeArrive, transport):
     time = datetime.strptime(timeArrive,
                              "%d/%m/%Y %H:%M:%S") - datetime.strptime(timeDepart,
                                                                       "%d/%m/%Y %H:%M:%S")
-    if (int(time.total_seconds()) < 3600):
-        return 10000 + int(time.total_seconds()) / 3600 * 10000
-    else:
-        return 8000 + int(time.total_seconds()) / 3600 * 8000
+    if (transport[0] == 'B'):
+        if (int(time.total_seconds()) < 3600):
+            return 10000 + int(time.total_seconds()) / 3600 * 10000
+        else:
+            return 8000 + int(time.total_seconds()) / 3600 * 8000
+    if (transport[0:2] == 'EB'):
+        if (int(time.total_seconds()) < 3600):
+            return 15000 + int(time.total_seconds()) / 3600 * 15000
+        else:
+            return 12000 + int(time.total_seconds()) / 3600 * 12000
+    if (transport[0:2] == 'EM'):
+        if (int(time.total_seconds()) < 3600):
+            return 20000 + int(time.total_seconds()) / 3600 * 20000
+        else:
+            return 18000 + int(time.total_seconds()) / 3600 * 18000
 
 
 @api_view(['GET', 'POST'])
@@ -107,7 +118,8 @@ def RevenirTransport(request):
                                              stationDepart=user.stationDepart,
                                              stationArrive=stationArrive,
                                              cost=CalculateMoney(user.tempsDepart,
-                                                                 getDateTimeNow()),
+                                                                 getDateTimeNow(),
+                                                                 user.transportLouer),
                                              timeDepart=user.tempsDepart,
                                              timeArrive=getDateTimeNow())
     rent_detail.save()
