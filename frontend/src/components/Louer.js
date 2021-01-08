@@ -125,7 +125,7 @@ class Louer extends React.Component {
                 isClearable='true'
                 isSearchable='true'
                 isDisabled={this.state.isBikeSelected}
-                placeholder='Choisir le station'
+                placeholder='Choisir le vélo'
                 classNamePrefix='react-select'
                 onChange={this.getTransport}
             />
@@ -134,7 +134,7 @@ class Louer extends React.Component {
                 isClearable='true'
                 isSearchable='true'
                 isDisabled={this.state.isEBSelected}
-                placeholder='Choisir le station'
+                placeholder='Choisir le vélo électrique'
                 classNamePrefix='react-select'
                 onChange={this.getTransport}
             />
@@ -143,7 +143,7 @@ class Louer extends React.Component {
                 isClearable='true'
                 isSearchable='true'
                 isDisabled={this.state.isEMSelected}
-                placeholder='Choisir le station'
+                placeholder='Choisir le moto électrique'
                 classNamePrefix='react-select'
                 onChange={this.getTransport}
             />
@@ -249,26 +249,23 @@ class Louer extends React.Component {
             if (!this.state.statusUser) {
                 if (!this.state.selectedStation) {
                     return (<div className="content-sidebar">
-                        <div className="search">
-                            Choisir le station
+                        <div className="content-louer">
+                        Selecter le station pour louer
                         {this.renderStation()}
                         </div>
-                        <div className="content-louer">
-                            Selecter le station pour louer
-                </div>
                     </div>)
                 }
                 if (this.state.selectedStation) {
                     return (<div className="content-sidebar">
-                        <div className="search">
-                            Choisir le station
+                        <div className="content-louer">
+                        Selecter le station pour louer
                         {this.renderStation()}
                         </div>
                         <div className="content-louer">
                             Choisir le Transport
                         {this.renderContentLouer()}
                         </div>
-                        <button onClick={this.submitLouer}>Louer</button>
+                        <button className="content-button-louer" onClick={this.submitLouer}>Louer</button>
                     </div>)
                 }
             }
@@ -276,25 +273,25 @@ class Louer extends React.Component {
                 if (this.state.isGiveBack === null || this.state.isGiveBack === '') {
                     return (<div className="content-sidebar">
                         <div className="search">
-                            <h3>Vous êtes en train de louer</h3>
+                            <h3 className="content-louer-title-1">Vous êtes en train de louer</h3>
                         </div>
                         <div className="content-louer">
                             Choisir le station pour revenir
                             {this.renderArriveStation()}
-                            <button onClick={this.submitRevenir}>Revenir</button>
+                            <button className="content-button-louer-2" onClick={this.submitRevenir}>Revenir</button>
                         </div>
                     </div>)
                 }
                 if (this.state.isGiveBack === 'N') {
                     return (<div className="content-sidebar">
                         <div className="search">
-                            <h3>Vous êtes en train de louer</h3>
+                            <h3 className="content-louer-title-1">Vous êtes en train de louer</h3>
                         </div>
                         <div className="content-louer">
                             Choisir le station pour revenir
                             {this.renderArriveStation()}
                             <h3>Entrez votre arrive station, s'il vous plait</h3>
-                            <button onClick={this.submitRevenir}>Revenir</button>
+                            <button className="content-button-louer-2" onClick={this.submitRevenir}>Revenir</button>
                         </div>
                     </div>)
                 }
@@ -302,11 +299,10 @@ class Louer extends React.Component {
                     var optionAvailable = this.optionsPromo.filter(item => { return item.value <= this.state.point })
                     return (<div className="content-sidebar">
                         <div className="search">
-                            <h3>Payer, s'il vous plait</h3>
+                            <h3 className="content-louer-title-1">Payer, s'il vous plait</h3>
                         </div>
                         <div className="content-louer">
-                            <h3>Le prix: {this.state.cost} Vnđ</h3>
-                            <button onClick={this.submitPayer}>Payer</button>
+                            <h3 className="content-louer-title-2">Le prix: {this.state.cost} VND</h3>
                             <div className={promoClassname.join(' ')}>
                                 <Select options={optionAvailable}
                                     isClearable='true'
@@ -316,6 +312,7 @@ class Louer extends React.Component {
                                     onChange={this.submitPromotion.bind(this)}
                                 />
                             </div>
+                            <button className="content-button-louer-2" onClick={this.submitPayer}>Payer</button>
                         </div>
 
                     </div>)

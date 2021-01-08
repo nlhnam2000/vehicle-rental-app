@@ -69,10 +69,7 @@ class NearestStation extends React.Component {
                             <input className="searchBox" type="text" placeholder={this.state.placeholder} ref={this.searchBox} onChange={this.setPosition}/>
                             <img className="Icon-gps" src={gps} alt='gps' onClick={this.getPosition} />
                         </form>
-                        <button onClick={this.findNearestStation}>Trouver</button>
-                    </div>
-                    <div className="content-nearest-station">
-                        La plus proche Station
+                        <button className="content-nearest-button" onClick={this.findNearestStation}>Trouver</button>
                     </div>
                 </div>
             </>)
@@ -84,7 +81,7 @@ class NearestStation extends React.Component {
                         <input className="searchBox" type="text" placeholder={this.props.placeholder} ref={this.searchBox} onChange={this.setPosition}/>
                         <img className="Icon-gps" src={gps} alt='gps' onClick={this.getPosition} />
                     </form>
-                    <button onClick={this.findNearestStation}>Trouver</button>
+                    <button className="content-nearest-button" onClick={this.findNearestStation}>Trouver</button>
                 </div>
                 <div className="content-nearest-station">
                     {this.renderStation()}

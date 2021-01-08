@@ -53,7 +53,7 @@ ul li.nav-link:hover {
 } */
 
 .navbar > .navbar-branch > h3 {
-  color: black;
+  color: #fff;
   font-family: "Work Sans", sans-serif;
   font-weight: bold;
   font-size: 30px;
@@ -82,11 +82,13 @@ ul li.nav-link:hover {
   padding: 10px;
   text-decoration: none;
 } */
-
+.btn-group {
+  margin-right: 50px;
+}
 .navbar {
   /* background-color: rgb(26, 165, 219); */
   width: 100%;
-  background-color: #fff;
+  background-color: #6acc00;
   box-shadow:  2px 10px -2px rgba(0, 0, 0, 0.1);
   position: fixed;
   /* border-bottom: 0.1px solid rgb(26, 165, 219); */
@@ -94,7 +96,7 @@ ul li.nav-link:hover {
 }
 
 .navbar li .nav-link {
-  color: black !important;
+  color: #fff !important;
   font-size: 25px;
   margin-left: 20px;
   margin-right: 20px;
@@ -119,7 +121,7 @@ ul li.nav-link:hover {
 .home-item {
   display: flex;
   flex-wrap: wrap;
-  background-color: #6acc00;
+  margin-top: 100px;
   font-family: "Valera-Round";
 }
 
@@ -138,7 +140,7 @@ ul li.nav-link:hover {
 
 .detail-text {
   margin: auto;
-  color: white;
+  color: black;
 }
 .home-item img {
   flex: 50%;
@@ -596,6 +598,34 @@ input[type="submit"] {
 .Icon-gps{
   margin-top: 3%;
 }
+
+.content-nearest-button {
+  position: fixed;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 18px;
+  border-radius: 40px;
+  letter-spacing: 2px;
+  background-color: #6acc00;
+  font-family: "Valera-Round";
+  opacity: 0.6;
+  transition: 0.5s;
+  width: 200px;
+  height: 30px;
+  margin-top: 30px;
+  text-align: center;
+  margin-left: 80px;
+  outline: none;
+}
+.content-nearest-button:hover{
+  opacity: 1;
+}
+.content-nearest-button:focus{
+  outline: none;
+}
+.content-nearest-station{
+  margin-top: 50px;
+}
 /*Louer*/
 .react-select__control{
   width: 95% !important;
@@ -631,6 +661,71 @@ input[type="submit"] {
     height: 200px;
   }
   
+}
+.content-louer {
+  font-family: "Valera-Round";
+  font-size: 18px;
+}
+
+.content-button-louer {
+  text-transform: uppercase;
+  font-size: 20px;
+  border-radius: 40px;
+  letter-spacing: 2px;
+  background-color: #6acc00;
+  font-family: "Valera-Round";
+  opacity: 0.6;
+  transition: 0.5s;
+  width: 300px;
+  height: 40px;
+  text-align: center;
+  outline: none;
+  margin-bottom: 20px;
+  margin-left: 60px;
+}
+
+.content-button-louer:hover{
+  opacity: 1;
+}
+.content-button-louer:focus{
+  outline: none;
+}
+
+.content-louer-title-1 {
+  color: #6acc00;
+  font-family: "Valera-Round";
+  text-align: center;
+}
+
+.content-button-louer-2 {
+  position: fixed;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 18px;
+  border-radius: 40px;
+  letter-spacing: 2px;
+  background-color: #6acc00;
+  font-family: "Valera-Round";
+  opacity: 0.6;
+  transition: 0.5s;
+  width: 200px;
+  height: 30px;
+  margin-top: 30px;
+  text-align: center;
+  margin-left: 110px;
+  outline: none;
+}
+
+
+.content-button-louer-2:hover{
+  opacity: 1;
+}
+.content-button-louer-2:focus{
+  outline: none;
+}
+
+.content-louer-title-2 {
+  margin-left: 25px;
 }
 /* Louer */
 
