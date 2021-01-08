@@ -48,7 +48,7 @@ class Menu extends React.Component {
 
                             {
                                 this.props.isAuthenticated ?
-                                    <div className="navbar-nav ml-auto" style={{ marginRight: '20px' }}>
+                                    <div className="navbar-nav ml-auto" style={{ marginRight: '100px' }}>
                                         <div className="btn-group">
                                             <button className="btn btn-success " data-toggle="dropdown">
                                                 {localStorage.getItem('username')}

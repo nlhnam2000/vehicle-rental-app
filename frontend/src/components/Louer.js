@@ -2,7 +2,7 @@ import React from 'react'
 import '../App.css'
 import axios from 'axios'
 import Select from 'react-select'
-
+import { withRouter } from 'react-router'
 var promoClassname = ['promotion']
 
 class Louer extends React.Component {
@@ -39,8 +39,8 @@ class Louer extends React.Component {
         this.submitPayer = this.submitPayer.bind(this)
     }
     optionsPromo = [{ label: '20%', value: 20 },
-                    { label: '30%', value: 30 },
-                    { label: '50%', value: 50 }]
+    { label: '30%', value: 30 },
+    { label: '50%', value: 50 }]
     LoadStation() {
         axios.get('http://localhost:8000/api/stations')
             .then(res => { this.setState({ listStation: res.data }) })
@@ -179,8 +179,10 @@ class Louer extends React.Component {
                 })
                 .catch(e => (console.log(e)))
         }
-        else
-            alert('Vous n\'avez pas assez d\'argent! Rechargez, s\'il vous plait')
+        else {
+            alert('Vous n\'avez pas assez d\'argent! Rechargez, s\'il vous plait');
+            // this.props.history.push('/user/addmoney');
+        }
     }
     getArriveStation(selectedArriveStation) {
         this.setState({ selectedArriveStation })
