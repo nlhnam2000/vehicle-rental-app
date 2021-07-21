@@ -10,6 +10,7 @@ from .models import Station, User, Bike, ElecBike, ElecMoto, Rent_Detail, Award
 
 # Create your views here.
 
+
 def Haversine(lat1, long1, lat2, long2):
     R = 6372.8
     dLat = radians(lat2 - lat1)
@@ -19,6 +20,7 @@ def Haversine(lat1, long1, lat2, long2):
     a = sin(dLat/2)**2 + cos(lat1) * cos(lat2) * sin(dLong/2)**2
     c = 2 * asin(sqrt(a))
     return R * c
+
 
 def TrouverPosition(request):
     longitude = float(request.GET.get('longitude', ''))
@@ -40,6 +42,7 @@ def TrouverPosition(request):
 def getDateTimeNow():
     now = datetime.now()
     return now.strftime("%d/%m/%Y %H:%M:%S")
+
 
 def CalculateMoney(timeDepart, timeArrive, transport):
     time = datetime.strptime(timeArrive,
